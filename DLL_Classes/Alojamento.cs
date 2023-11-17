@@ -82,12 +82,6 @@ namespace DLL_Classes
 
         #endregion
 
-        #region MÉTODOS 
-
-        // Outros métodos relacionados à gestão do alojamento.
-
-        #endregion
-
         #region OPERADORES 
         // Operador de igualdade para comparar dois alojamentos com base no ID do alojamento.
         public static bool operator ==(Alojamento a1, Alojamento a2)

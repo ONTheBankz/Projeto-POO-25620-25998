@@ -9,8 +9,9 @@
 /// </summary>
 
 using System;
+using DLL_Classes;
 
-namespace DLL_Classes
+namespace DLL_Classes_II    
 {
     public class CheckIn
     {
@@ -78,12 +79,6 @@ namespace DLL_Classes
             get { return dataCheckIn; }
             set { dataCheckIn = value; }
         }
-
-        #endregion
-
-        #region MÉTODOS
-
-        // Outros métodos relacionados à gestão do check-in.
 
         #endregion
 

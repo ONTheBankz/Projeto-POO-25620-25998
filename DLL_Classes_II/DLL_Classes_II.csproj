@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -10,9 +9,6 @@
   <ItemGroup>
     <Reference Include="DLL_Classes">
       <HintPath>..\DLL_Classes\bin\Debug\net6.0\DLL_Classes.dll</HintPath>
-    </Reference>
-    <Reference Include="DLL_Classes_II">
-      <HintPath>..\DLL_Classes_II\bin\Debug\net6.0\DLL_Classes_II.dll</HintPath>
     </Reference>
   </ItemGroup>
 

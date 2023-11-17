@@ -9,8 +9,9 @@
 /// </summary>
 
 using System;
+using DLL_Classes;
 
-namespace DLL_Classes
+namespace DLL_Classes_II    
 {
     public class Reserva
     {
@@ -114,12 +115,6 @@ namespace DLL_Classes
 
         #endregion
 
-        #region MÉTODOS
-
-        // Outros métodos relacionados à reserva.
-
-        #endregion
-
         #region OPERADORES
         // Sobrecarga do operador de igualdade para comparar duas reservas com base no ID da reserva.
         public static bool operator ==(Reserva r1, Reserva r2)
@@ -138,7 +133,7 @@ namespace DLL_Classes
         // Sobrecarga do método ToString para obter uma representação de string do objeto Reserva.
         public override string ToString()
         {
-            return string.Format("ID Reserva: {0}\nNome Alojamento: {2}\nNome Cliente: {4}\nNº Pessoas: {5}\nData Início: {6}\nData Fim: {7}\n",
+            return string.Format("ID Reserva: {0}\nNome Alojamento: {1}\nNome Cliente: {2}\nNº Pessoas: {3}\nData Início: {4}\nData Fim: {5}\n",
                                  idReserva, alojamento.Nome, cliente.Nome, numPessoas, dataInicio.ToShortDateString(), dataFim.ToShortDateString());
         }
 

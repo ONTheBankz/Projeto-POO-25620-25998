@@ -12,7 +12,7 @@ using System;
 
 namespace DLL_Classes
 {
-    public class Cliente
+    public class Cliente 
     {
         #region ESTADO 
         // Define campos privados para armazenar o estado do objeto Cliente.
@@ -101,12 +101,6 @@ namespace DLL_Classes
             get { return nif; }
             set { nif = value; }
         }
-
-        #endregion
-
-        #region MÉTODOS 
-
-        // Outros métodos relacionados ao cliente.
 
         #endregion
 
