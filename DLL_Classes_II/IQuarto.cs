@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Quarto
+/// Interface para listagem de métodos Quarto
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -10,9 +10,9 @@
 
 using System;
 
-namespace DLL_Classes
+namespace DLL_Classes_II
 {
-    public class Quartos : IQuarto
+    internal interface IQuarto  
     {
 
     }

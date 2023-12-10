@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Check-Out
+/// Classe para criação de funções Pessoa
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -14,24 +14,24 @@ using DLL_Classes;
 
 namespace DLL_Classes_II
 {
-    public class Check_Outs : ICheck_Out
+    public class Pessoas : IPessoa
     {
         #region ESTADO
-        static List<CheckOut> checkOuts;
+        static List<Pessoa> pessoas;
         #endregion
 
         #region CONSTRUTORES
-        static Check_Outs()
+        static Pessoas()
         {
-            checkOuts = new List<CheckOut>();
+            pessoas = new List<Pessoa>();
         }
         #endregion
 
         #region PROPRIEDADES
-        public static List<CheckOut> CHECKOUT
+        public static List<Pessoa> PESSOA
         {
-            get { return checkOuts; }
-            set { checkOuts = value; }
+            get { return pessoas; }
+            set { pessoas = value; }
         }
 
         #endregion

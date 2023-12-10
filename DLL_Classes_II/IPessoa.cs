@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Cliente
+/// Interface para listagem de métodos Pessoa
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -9,10 +9,11 @@
 /// </summary>
 
 using System;
+using DLL_Classes;
 
-namespace DLL_Classes
+namespace DLL_Classes_II
 {
-    public class Clientes : ICliente
+    internal interface IPessoa
     {
 
     }

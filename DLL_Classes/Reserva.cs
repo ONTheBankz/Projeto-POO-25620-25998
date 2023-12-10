@@ -9,9 +9,8 @@
 /// </summary>
 
 using System;
-using DLL_Classes;
 
-namespace DLL_Classes_II    
+namespace DLL_Classes
 {
     public class Reserva
     {
@@ -133,8 +132,8 @@ namespace DLL_Classes_II
         // Sobrecarga do método ToString para obter uma representação de string do objeto Reserva.
         public override string ToString()
         {
-            return string.Format("ID Reserva: {0}\nNome Alojamento: {1}\nNome Cliente: {2}\nNº Pessoas: {3}\nData Início: {4}\nData Fim: {5}\n",
-                                 idReserva, alojamento.Nome, cliente.Nome, numPessoas, dataInicio.ToShortDateString(), dataFim.ToShortDateString());
+            return string.Format("ID Reserva: {0}\nNome Alojamento: {1}\nID Quarto: {2}\nNome Cliente: {3}\nNº Pessoas: {4}\nData Início: {5}\nData Fim: {6}\n",
+                                 idReserva, alojamento.Nome, quarto.ID, cliente.Nome, numPessoas, dataInicio.ToShortDateString(), dataFim.ToShortDateString());
         }
 
         // Sobrecarga do método Equals para comparar objetos Reserva.

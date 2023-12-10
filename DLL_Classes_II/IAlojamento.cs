@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Interface para listagem de métodos Cliente
+/// Interface para listagem de métodos Alojamento
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -10,9 +10,9 @@
 
 using System;
 
-namespace DLL_Classes
+namespace DLL_Classes_II
 {
-    internal interface ICliente
+    internal interface IAlojamento
     {
 
     }

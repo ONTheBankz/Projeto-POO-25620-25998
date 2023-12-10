@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Interface para listagem de métodos Quarto
+/// Interface para listagem de métodos Cliente
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -10,9 +10,9 @@
 
 using System;
 
-namespace DLL_Classes
+namespace DLL_Classes_II
 {
-    internal interface IQuarto  
+    internal interface ICliente
     {
 
     }

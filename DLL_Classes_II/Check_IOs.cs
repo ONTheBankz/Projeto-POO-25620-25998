@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Check-Out
+/// Classe para criação de funções Check_IO
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -14,24 +14,24 @@ using DLL_Classes;
 
 namespace DLL_Classes_II
 {
-    public class Check_Outs : ICheck_Out
+    public class Check_IOs : ICheck_IO
     {
         #region ESTADO
-        static List<CheckOut> checkOuts;
+        static List<CheckIO> checkIOs;
         #endregion
 
         #region CONSTRUTORES
-        static Check_Outs()
+        static Check_IOs()
         {
-            checkOuts = new List<CheckOut>();
+            checkIOs = new List<CheckIO>();
         }
         #endregion
 
         #region PROPRIEDADES
-        public static List<CheckOut> CHECKOUT
+        public static List<CheckIO> CHECKIO
         {
-            get { return checkOuts; }
-            set { checkOuts = value; }
+            get { return checkIOs; }
+            set { checkIOs = value; }
         }
 
         #endregion

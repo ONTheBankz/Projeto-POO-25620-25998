@@ -84,14 +84,14 @@ namespace DLL_Classes
 
         #region OPERADORES 
         // Operador de igualdade para comparar dois alojamentos com base no ID do alojamento.
-        public static bool operator ==(Alojamento a1, Alojamento a2)
+        public static bool operator ==(Alojamento al1, Alojamento al2)
         {
-            return a1.idAlojamento == a2.idAlojamento;
+            return al1.idAlojamento == al2.idAlojamento;
         }
         // Operador de desigualdade para negar a igualdade entre dois alojamentos.
-        public static bool operator !=(Alojamento a1, Alojamento a2)
+        public static bool operator !=(Alojamento al1, Alojamento al2)
         {
-            return !(a1 == a2);
+            return !(al1 == al2);
         }
 
         #endregion
@@ -109,8 +109,8 @@ namespace DLL_Classes
         {
             if (obj is Alojamento)
             {
-                Alojamento a = (Alojamento)obj;
-                return this == a;
+                Alojamento al = (Alojamento)obj;
+                return this == al;
             }
             return false;
         }

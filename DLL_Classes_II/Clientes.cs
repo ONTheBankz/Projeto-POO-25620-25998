@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Check-Out
+/// Classe para criação de funções Cliente
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -14,24 +14,24 @@ using DLL_Classes;
 
 namespace DLL_Classes_II
 {
-    public class Check_Outs : ICheck_Out
+    public class Clientes : ICliente
     {
         #region ESTADO
-        static List<CheckOut> checkOuts;
+        static List<Cliente> clientes;
         #endregion
 
         #region CONSTRUTORES
-        static Check_Outs()
+        static Clientes()
         {
-            checkOuts = new List<CheckOut>();
+            clientes = new List<Cliente>();
         }
         #endregion
 
         #region PROPRIEDADES
-        public static List<CheckOut> CHECKOUT
+        public static List<Cliente> CLIENTE
         {
-            get { return checkOuts; }
-            set { checkOuts = value; }
+            get { return clientes; }
+            set { clientes = value; }
         }
 
         #endregion
@@ -39,6 +39,6 @@ namespace DLL_Classes_II
         #region OUTROS MÉTODOS
 
         #endregion
-
+    
     }
 }

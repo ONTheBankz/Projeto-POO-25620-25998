@@ -9,12 +9,36 @@
 /// </summary>
 
 using System;
+using System.Collections.Generic;
 using DLL_Classes;
 
 namespace DLL_Classes_II
 {
     public class Reservas : IReserva
     {
+        #region ESTADO
+        static List<Reserva> reservas;
+        #endregion
+
+        #region CONSTRUTORES
+        static Reservas()
+        {
+            reservas = new List<Reserva>();
+        }
+        #endregion
+
+        #region PROPRIEDADES
+        public static List<Reserva> RESERVA
+        {
+            get { return reservas; }
+            set { reservas = value; }
+        }
+
+        #endregion
+
+        #region OUTROS MÉTODOS
+ 
+        #endregion
 
     }
 }

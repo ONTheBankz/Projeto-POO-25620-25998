@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Classe para criação de funções Check-Out
+/// Classe para criação de funções Quarto
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -14,24 +14,24 @@ using DLL_Classes;
 
 namespace DLL_Classes_II
 {
-    public class Check_Outs : ICheck_Out
+    public class Quartos : IQuarto
     {
         #region ESTADO
-        static List<CheckOut> checkOuts;
+        static List<Quarto> quartos;
         #endregion
 
         #region CONSTRUTORES
-        static Check_Outs()
+        static Quartos()
         {
-            checkOuts = new List<CheckOut>();
+            quartos = new List<Quarto>();
         }
         #endregion
 
         #region PROPRIEDADES
-        public static List<CheckOut> CHECKOUT
+        public static List<Quarto> QUARTO
         {
-            get { return checkOuts; }
-            set { checkOuts = value; }
+            get { return quartos; }
+            set { quartos = value; }
         }
 
         #endregion

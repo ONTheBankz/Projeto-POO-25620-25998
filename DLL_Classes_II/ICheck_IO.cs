@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Interface para listagem de métodos Alojamento
+/// Interface para listagem de métodos Check_IO
 /// David Martinho
 /// Rafael Rodrigues
 /// a25620@alunos.ipca.pt
@@ -9,10 +9,11 @@
 /// </summary>
 
 using System;
+using DLL_Classes;
 
-namespace DLL_Classes
+namespace DLL_Classes_II
 {
-    internal interface IAlojamento
+    internal interface ICheck_IO
     {
 
     }

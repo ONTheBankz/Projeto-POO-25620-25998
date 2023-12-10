@@ -23,9 +23,6 @@ namespace DLL_Classes
         // Tipo de quarto.
         private string tipoQuarto;
 
-        // Número do quarto.
-        private int numQuarto;
-
         // Indica se o quarto está disponível.
         private bool disponibilidade;
 
@@ -45,17 +42,15 @@ namespace DLL_Classes
         {
             idQuarto = 0;
             tipoQuarto = "";
-            numQuarto = 0;
             disponibilidade = false;
             valor = 0;
             alojamento = null;
         }
         // Construtor parametrizado inicializa o Quarto com valores específicos.
-        public Quarto(int idQuarto, string tipoQuarto, int numQuarto, bool disponibilidade, decimal valor, Alojamento alojamento)
+        public Quarto(int idQuarto, string tipoQuarto, bool disponibilidade, decimal valor, Alojamento alojamento)
         {
             this.idQuarto = idQuarto;
             this.tipoQuarto = tipoQuarto;
-            this.numQuarto = numQuarto;
             this.disponibilidade = disponibilidade;
             this.valor = valor;
             this.alojamento = alojamento;
@@ -75,12 +70,6 @@ namespace DLL_Classes
         {
             get { return tipoQuarto; }
             set { tipoQuarto = value; }
-        }
-
-        public int Num
-        {
-            get { return numQuarto; }
-            set { numQuarto = value; }
         }
 
         public bool Disponibilidade
@@ -127,8 +116,8 @@ namespace DLL_Classes
         // Método ToString para obter uma representação de string do objeto Quarto.
         public override string ToString()
         {
-            return string.Format("ID: {0}\nID Alojamento: {1}\nTipo: {2}\nNúmero: {3}\nDisponibilidade: {4}\nValor: {5}\n",
-                                 idQuarto, alojamento.ID, tipoQuarto, numQuarto, disponibilidade, valor);
+            return string.Format("ID: {0}\nID Alojamento: {1}\nTipo: {2}\nDisponibilidade: {3}\nValor: {4}\n",
+                                 idQuarto, alojamento.ID, tipoQuarto, disponibilidade, valor);
         }
 
         // Método Equals para comparar objetos Quarto.

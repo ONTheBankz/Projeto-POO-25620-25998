@@ -9,26 +9,13 @@
 /// </summary>
 
 using System;
-using DLL_Classes;
 
-namespace DLL_Classes_II    
+namespace DLL_Classes 
 {
-    public class CheckIn
+    public class CheckIn : CheckIO
     {
         #region ESTADO
         // Define campos privados para armazenar o estado do objeto CheckIn.
-
-        // Identificador único para o check-in.
-        private int idCheckIn;
-
-        // Referência à instância de Reserva associada ao check-in.
-        private Reserva reserva;
-
-        // Referência à instância de Cliente associada ao check-in.
-        private Cliente cliente;
-
-        // Data do check-in.
-        private DateTime dataCheckIn;
 
         #endregion
 
@@ -36,49 +23,21 @@ namespace DLL_Classes_II
 
         #region CONSTRUTORES
         // Construtor padrão inicializa os campos com valores padrão.
-        public CheckIn()
+        public CheckIn() : base()
         {
-            idCheckIn = 0;
-            reserva = null;
-            cliente = null;
-            dataCheckIn = DateTime.MinValue;
+            
         }
         // Construtor parametrizado inicializa o CheckIn com valores específicos.
-        public CheckIn(int idCheckIn, Reserva reserva, Cliente cliente, DateTime dataCheckIn)
+        public CheckIn(int idCheckIn, Reserva reserva, DateTime dataCheckIn)
         {
-            this.idCheckIn = idCheckIn;
-            this.reserva = reserva;
-            this.cliente = cliente;
-            this.dataCheckIn = dataCheckIn;
+            ID = idCheckIn;
+            Reserva = reserva;
+            DataCheckIO = dataCheckIn;
         }
         #endregion
 
         #region PROPRIEDADES
         // Propriedades para acessar os campos privados.
-
-        public int ID
-        {
-            get { return idCheckIn; }
-            set { idCheckIn = value; }
-        }
-
-        public Reserva Reserva
-        {
-            get { return reserva; }
-            set { reserva = value; }
-        }
-
-        public Cliente Cliente
-        {
-            get { return cliente; }
-            set { cliente = value; }
-        }
-
-        public DateTime DataCheckIn
-        {
-            get { return dataCheckIn; }
-            set { dataCheckIn = value; }
-        }
 
         #endregion
 
@@ -87,7 +46,7 @@ namespace DLL_Classes_II
         // Sobrecarga do operador de igualdade para comparar dois check-ins com base no ID do check-in.
         public static bool operator ==(CheckIn ci1, CheckIn ci2)
         {
-            return ci1.idCheckIn == ci2.idCheckIn;
+            return ci1.ID == ci2.ID;
         }
 
         // Sobrecarga do operador de desigualdade para negar a igualdade entre dois check-ins.
@@ -104,7 +63,7 @@ namespace DLL_Classes_II
         public override string ToString()
         {
             return string.Format("ID Check-In: {0}\nID Reserva: {1}\nNome Cliente: {2}\nData Check-In: {3}\n",
-                                 idCheckIn, reserva.ID, reserva.Cliente.Nome, dataCheckIn.ToShortDateString());
+                                 ID, Reserva.ID, Reserva.Cliente.Nome, DataCheckIO.ToShortDateString());
         }
 
         // Sobrecarga do método Equals para comparar objetos CheckIn.

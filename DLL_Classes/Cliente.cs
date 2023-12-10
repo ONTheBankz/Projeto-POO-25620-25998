@@ -12,25 +12,13 @@ using System;
 
 namespace DLL_Classes
 {
-    public class Cliente 
+    public class Cliente : Pessoa
     {
         #region ESTADO 
         // Define campos privados para armazenar o estado do objeto Cliente.
-
-        // Nome do cliente.
-        private string nomeCliente;
-
+       
         // Morada do cliente.
         private string morada;
-
-        // Endereço de e-mail do cliente.
-        private string email;
-
-        // Data de nascimento do cliente.
-        private DateTime dataNascimento;
-
-        // Número de contacto do cliente.
-        private int contacto;
 
         // Número de Identificação Fiscal (NIF) do cliente.
         private int nif;
@@ -42,22 +30,18 @@ namespace DLL_Classes
         #region CONSTRUTORES
         // Construtor padrão inicializa os campos com valores padrão.
         public Cliente()
-        {
-            nomeCliente = "";
-            morada = "";
-            email = "";
-            dataNascimento = DateTime.MinValue;
-            contacto = 0;
+        {  
+            morada = "";        
             nif = 0;
         }
         // Construtor parametrizado inicializa o Cliente com valores específicos.
-        public Cliente(string nomeCliente, string morada, string email, DateTime dataNascimento, int contacto, int nif)
+        public Cliente(string nomeCliente, string morada, string emailCliente, int contactoCliente, DateTime dataNascCliente, int nif)
         {
-            this.nomeCliente = nomeCliente;
+            Nome = nomeCliente;        
+            Email = emailCliente;
+            Contacto = contactoCliente;
+            DataNascimento = dataNascCliente;
             this.morada = morada;
-            this.email = email;
-            this.dataNascimento = dataNascimento;
-            this.contacto = contacto;
             this.nif = nif;
         }
 
@@ -66,34 +50,10 @@ namespace DLL_Classes
         #region PROPRIEDADES 
         // Propriedades para acessar os campos privados.
 
-        public string Nome
-        {
-            get { return nomeCliente; }
-            set { nomeCliente = value; }
-        }
-
         public string Morada
         {
             get { return morada; }
             set { morada = value; }
-        }
-
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
-        public DateTime DataNascimento
-        {
-            get { return dataNascimento; }
-            set { dataNascimento = value; }
-        }
-
-        public int Contacto
-        {
-            get { return contacto; }
-            set { contacto = value; }
         }
 
         public int NIF
@@ -122,8 +82,8 @@ namespace DLL_Classes
         // Método ToString para obter uma representação de string do objeto Cliente.
         public override string ToString()
         {
-            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nData Nascimento: {3}\nContacto: {4}\nNIF: {5}",
-                                 nomeCliente, morada, email, dataNascimento.ToShortDateString(), contacto, nif);
+            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nContacto: {3}\nData Nascimento: {4}\nNIF: {5}",
+                                 Nome, morada, Email, Contacto, DataNascimento.ToShortDateString(), nif);
         }
 
         // Método Equals para comparar objetos Cliente.
