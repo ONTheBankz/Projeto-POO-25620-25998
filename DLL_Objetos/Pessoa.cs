@@ -18,6 +18,7 @@ namespace DLL_Objetos
         // Campos privados comuns a todas as pessoas.
         private string nome;
         private string email;
+        private string password;
         private int contacto;
         private DateTime dataNascimento;
         #endregion
@@ -30,15 +31,17 @@ namespace DLL_Objetos
         {
             nome = "";
             email = "";
+            password = "";
             contacto = 0;
             dataNascimento = DateTime.MinValue;
         }
 
         // Construtor parametrizado inicializa a Pessoa com valores específicos.
-        public Pessoa(string nome, string email, int contacto, DateTime dataNascimento)
+        public Pessoa(string nome, string email, string password, int contacto, DateTime dataNascimento)
         {
             this.nome = nome;
             this.email = email;
+            this.password = password;
             this.contacto = contacto;
             this.dataNascimento = dataNascimento;
         }
@@ -60,6 +63,12 @@ namespace DLL_Objetos
             set { email = value; }
         }
 
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
         public int Contacto
         {
             get { return contacto; }
@@ -78,7 +87,8 @@ namespace DLL_Objetos
         // Sobrescrever o método ToString para obter uma representação de string comum.
         public override string ToString()
         {
-            return string.Format("Nome: {0}\nEmail: {1}\nContacto: {2}\nData Nascimento: {3}\n", nome, email, contacto, dataNascimento.ToShortDateString());
+            return string.Format("Nome: {0}\nEmail: {1}\nPassword: {2}\nContacto: {3}\nData Nascimento: {4}", nome, email, password,
+                                contacto, dataNascimento.ToShortDateString());
         }
 
         // Método Equals para comparar objetos Pessoa.

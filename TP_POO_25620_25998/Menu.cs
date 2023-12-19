@@ -15,12 +15,17 @@ namespace TP_POO_25620_25998
     {
         public void MostrarMenu()
         {
-            Clientes c = new Clientes();
             Regras regras = new Regras();
-
+            regras.LerCliente("clientes");
+            regras.LerAlojamento("alojamentos");
             Console.WriteLine("===== Gestão de Alojamentos Turísticos =====");
+            Console.WriteLine("CLIENTES");
             Console.WriteLine("1. Inserir Cliente");
-            Console.WriteLine("2. Outras opções...");
+            Console.WriteLine("2. Listar Clientes");
+            Console.WriteLine("ALOJAMENTOS");
+            Console.WriteLine("3. Inserir Alojamento");
+            Console.WriteLine("4. Listar Alojamentos");
+
             Console.WriteLine("0. Sair");
             Console.Write("Escolha uma opção: ");
 
@@ -30,9 +35,17 @@ namespace TP_POO_25620_25998
             {
                 case 1:
                     regras.InserirCliente();
+                    regras.GravarCliente(@"clientes");
                     break;
                 case 2:
-                    // Adicione outras opções conforme necessário
+                    regras.ListarClientes();
+                    break;
+                case 3:
+                    regras.InserirAlojamento();
+                    regras.GravarAlojamento(@"alojamentos");
+                    break;
+                case 4:
+                    regras.ListarAlojamentos();
                     break;
                 case 0:
                     Console.WriteLine("Saindo do programa. Até logo!");

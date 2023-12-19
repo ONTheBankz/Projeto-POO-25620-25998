@@ -50,12 +50,14 @@
     <Compile Include="Check_IOs.cs" />
     <Compile Include="Check_Outs.cs" />
     <Compile Include="Clientes.cs" />
+    <Compile Include="Funcionarios.cs" />
     <Compile Include="IAdmin.cs" />
     <Compile Include="IAlojamento.cs" />
     <Compile Include="ICheck_In.cs" />
     <Compile Include="ICheck_IO.cs" />
     <Compile Include="ICheck_Out.cs" />
     <Compile Include="ICliente.cs" />
+    <Compile Include="IFuncionario.cs" />
     <Compile Include="IPessoa.cs" />
     <Compile Include="IQuarto.cs" />
     <Compile Include="IReserva.cs" />

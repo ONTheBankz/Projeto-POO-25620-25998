@@ -35,10 +35,11 @@ namespace DLL_Objetos
             nif = 0;
         }
         // Construtor parametrizado inicializa o Cliente com valores específicos.
-        public Cliente(string nomeCliente, string morada, string emailCliente, int contactoCliente, DateTime dataNascCliente, int nif)
+        public Cliente(string nomeCliente, string morada, string emailCliente, string passCliente, int contactoCliente, DateTime dataNascCliente, int nif)
         {
             Nome = nomeCliente;        
             Email = emailCliente;
+            Password = passCliente;
             Contacto = contactoCliente;
             DataNascimento = dataNascCliente;
             this.morada = morada;
@@ -82,8 +83,8 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Cliente.
         public override string ToString()
         {
-            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nContacto: {3}\nData Nascimento: {4}\nNIF: {5}",
-                                 Nome, morada, Email, Contacto, DataNascimento.ToShortDateString(), nif);
+            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}",
+                                 Nome, morada, Email, Password, Contacto, DataNascimento.ToShortDateString(), nif);
         }
 
         // Método Equals para comparar objetos Cliente.

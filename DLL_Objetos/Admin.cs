@@ -20,9 +20,6 @@ namespace DLL_Objetos
         // Identificador único para o admin.
         private int idAdmin;
 
-        // Referência à instância de Alojamento associada ao admin.
-        private Alojamento alojamento;
-
         #endregion
 
         #region COMPORTAMENTO 
@@ -32,18 +29,17 @@ namespace DLL_Objetos
         public Admin() : base()
         {
             idAdmin = 0;
-            alojamento = null;
         }
         // Construtor parametrizado inicializa o Admin com valores específicos.
-        public Admin(int idAdmin, string nomeAdmin, string emailAdmin, int contactoAdmin, DateTime dataNascAdmin, Alojamento alojamento)
+        public Admin(int idAdmin, string nomeAdmin, string emailAdmin, string passAdmin, int contactoAdmin, DateTime dataNascAdmin)
         
         {
             Nome = nomeAdmin;
             Email = emailAdmin;
+            Password = passAdmin;
             Contacto = contactoAdmin;
             DataNascimento = dataNascAdmin;
             this.idAdmin = idAdmin;
-            this.alojamento = alojamento;
         }
 
         #endregion
@@ -55,12 +51,6 @@ namespace DLL_Objetos
         {
             get { return idAdmin; }
             set { idAdmin = value; }
-        }
-
-        public Alojamento Alojamento
-        {
-            get { return alojamento; }
-            set { alojamento = value; }
         }
 
         #endregion
@@ -83,8 +73,8 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Admin.
         public override string ToString()
         {
-            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nContacto: {3}\nData Nascimento: {4}\nID Alojamento: {5}",
-                                 idAdmin, Nome, Email, Contacto, DataNascimento.ToShortDateString(), alojamento.ID);
+            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}",
+                                 idAdmin, Nome, Email, Password, Contacto, DataNascimento.ToShortDateString());
         }
 
         // Método Equals para comparar objetos Admin.

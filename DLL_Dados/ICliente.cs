@@ -15,6 +15,10 @@ namespace DLL_Dados
 {
     internal interface ICliente
     {
-
+        bool GravarCliente(string c);
+        bool LerCliente(string c);
+        bool InserirCliente(Cliente c);
+        bool ListarClientes();
+        bool ExisteCliente(int NIF);
     }
 }

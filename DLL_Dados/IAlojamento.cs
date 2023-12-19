@@ -15,6 +15,10 @@ namespace DLL_Dados
 {
     internal interface IAlojamento
     {
-
+        bool GravarAlojamento(string a);
+        bool LerAlojamento(string a);
+        bool InserirAlojamento(Alojamento a);
+        bool ListarAlojamentos();
+        bool ExisteAlojamento(int ID);
     }
 }
