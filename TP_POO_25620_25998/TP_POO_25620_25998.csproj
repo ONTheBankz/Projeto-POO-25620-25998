@@ -53,7 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="MenuAdmin.cs" />
+    <Compile Include="MenuCliente.cs" />
+    <Compile Include="MenuFunc.cs" />
+    <Compile Include="MenuPrincipal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

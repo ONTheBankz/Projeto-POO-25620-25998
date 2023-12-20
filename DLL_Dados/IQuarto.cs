@@ -15,6 +15,10 @@ namespace DLL_Dados
 {
     internal interface IQuarto  
     {
-
+        bool GravarQuarto(string q);
+        bool LerQuarto(string q);
+        bool InserirQuarto(Quarto q);
+        bool ListarQuartos();
+        bool ExisteQuarto(int ID);
     }
 }

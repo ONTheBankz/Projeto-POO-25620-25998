@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DLL_Objetos;
 
 namespace DLL_Dados
@@ -54,13 +55,19 @@ namespace DLL_Dados
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao gravar produtos: {ex.Message}");
+                Console.WriteLine($"Erro ao gravar alojamentos: {ex.Message}");
                 return false;
             }
         }
 
         public bool LerAlojamento(string a)
         {
+            if (!File.Exists(a))
+            {
+                // Se o ficheiro não existir, cria um novo ficheiro vazio
+                using (File.Create(a)) { }
+                return false; // Retorna falso porque não há dados para ler
+            }
             using (StreamReader sr = File.OpenText(a))
             {
                 string linha = sr.ReadLine();
@@ -70,9 +77,9 @@ namespace DLL_Dados
                     int id = int.Parse(sdados[0]);
                     string nome = (sdados[1]);
                     string tipo = (sdados[2]);
-                    string localização = (sdados[3]);
+                    string localizacao = (sdados[3]);
 
-                    Alojamento alojamento = new Alojamento(id, nome, tipo, localização);
+                    Alojamento alojamento = new Alojamento(id, nome, tipo, localizacao);
 
                     alojamentos.Add(alojamento);
 
@@ -89,10 +96,10 @@ namespace DLL_Dados
         }
 
         public bool ListarAlojamentos()
-        {
+        {          
             foreach (Alojamento alojamento in ALOJAMENTO)
             {
-                Console.WriteLine("ID: {0}\nNome: {1}\nTipo: {2}\nLocalização: {3}", alojamento.ID, alojamento.Nome, alojamento.Tipo, alojamento.Localizacao);
+                Console.WriteLine("ID: {0}\nNome: {1}\nTipo: {2}\nLocalização: {3}\n", alojamento.ID, alojamento.Nome, alojamento.Tipo, alojamento.Localizacao);
             }
             return true;
         }
@@ -109,10 +116,6 @@ namespace DLL_Dados
             return false;
         }
 
-  
-      
-
         #endregion
-
     }
 }

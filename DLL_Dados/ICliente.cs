@@ -20,5 +20,6 @@ namespace DLL_Dados
         bool InserirCliente(Cliente c);
         bool ListarClientes();
         bool ExisteCliente(int NIF);
+        bool AuthCliente(int NIF, string Password);
     }
 }

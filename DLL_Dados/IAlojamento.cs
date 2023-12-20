@@ -18,7 +18,7 @@ namespace DLL_Dados
         bool GravarAlojamento(string a);
         bool LerAlojamento(string a);
         bool InserirAlojamento(Alojamento a);
-        bool ListarAlojamentos();
-        bool ExisteAlojamento(int ID);
+        bool ListarAlojamentos();     
+        bool ExisteAlojamento(int ID);      
     }
 }

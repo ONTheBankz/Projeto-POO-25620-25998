@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using DLL_Objetos;
 
 namespace DLL_Dados
@@ -37,6 +38,86 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        public bool GravarQuarto(string q)
+        {
+            try
+            {
+                using (StreamWriter writer = File.CreateText(q))
+                {
+                    foreach (var quarto in quartos)
+                    {
+                        writer.WriteLine($"{quarto.ID}#{quarto.Tipo}#{quarto.Disponibilidade}#{quarto.Valor}#{quarto.Alojamento.ID}");
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao gravar quarto: {ex.Message}");
+                return false;
+            }
+        }
+
+        public bool LerQuarto(string q)
+        {
+            if (!File.Exists(q))
+            {
+                // Se o ficheiro não existir, cria um novo ficheiro vazio
+                using (File.Create(q)) { }
+                return false; // Retorna falso porque não há dados para ler
+            }
+            using (StreamReader sr = File.OpenText(q))
+            {
+                string linha = sr.ReadLine();
+                while (linha != null)
+                {
+                    string[] sdados = linha.Split('#');
+                    int id = int.Parse(sdados[0]);
+                    string tipo = (sdados[1]);
+                    bool disponibilidade = bool.Parse(sdados[2]);
+                    decimal valor = decimal.Parse(sdados[3]);
+                    int alojamentoID = int.Parse(sdados[4]);
+
+                    Alojamento alojamento = new Alojamento { ID = alojamentoID };
+
+                    Quarto quarto = new Quarto(id, tipo, disponibilidade, valor, alojamento);
+
+                    quartos.Add(quarto);
+
+                    linha = sr.ReadLine();
+                }
+            }
+            return true;
+        }
+
+        public bool InserirQuarto(Quarto q)
+        {
+            quartos.Add(q);
+            return true;
+        }
+
+        public bool ListarQuartos()
+        {
+            foreach (Quarto quarto in QUARTO)
+            {
+                Console.WriteLine("ID Quarto: {0}\nTipo Quarto: {1}\nDisponibilidade: {2}\nValor por Noite: {3}\nID Alojamento: {4}\n",
+                                 quarto.ID, quarto.Tipo, quarto.Disponibilidade, quarto.Valor, quarto.Alojamento.ID);
+            }
+            return true;
+        }
+
+        public bool ExisteQuarto(int ID)
+        {
+            foreach (Quarto quarto in quartos)
+            {
+                if (quarto.ID == ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         #endregion
 

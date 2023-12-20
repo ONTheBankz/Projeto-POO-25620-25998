@@ -47,20 +47,26 @@ namespace DLL_Dados
                 {
                     foreach (var cliente in clientes)
                     {
-                       writer.WriteLine($"{cliente.Nome}#{cliente.Email}#{cliente.Password}#{cliente.Contacto}#{cliente.DataNascimento}#{cliente.Morada}#{cliente.NIF}");
+                       writer.WriteLine($"{cliente.Nome}#{cliente.Morada}#{cliente.Email}#{cliente.Password}#{cliente.Contacto}#{cliente.DataNascimento}#{cliente.NIF}");
                     }
                 }
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao gravar cliente: {ex.Message}");
+                Console.WriteLine($"Erro ao gravar clientes: {ex.Message}");
                 return false;
             }
         }
 
         public bool LerCliente(string c)
         {
+            if (!File.Exists(c))
+            {
+                // Se o ficheiro não existir, cria um novo ficheiro vazio
+                using (File.Create(c)) { }
+                return false; // Retorna falso porque não há dados para ler
+            }
             using (StreamReader sr = File.OpenText(c))
             {
                 string linha = sr.ReadLine();
@@ -68,11 +74,11 @@ namespace DLL_Dados
                 {
                     string[] sdados = linha.Split('#');
                     string nome = (sdados[0]);
-                    string email = (sdados[1]);
-                    string password = (sdados[2]);
-                    int contacto = int.Parse(sdados[3]);
-                    DateTime datanasc = DateTime.Parse(sdados[4]);
-                    string morada = (sdados[5]);
+                    string morada = (sdados[1]);
+                    string email = (sdados[2]);
+                    string password = (sdados[3]);
+                    int contacto = int.Parse(sdados[4]);
+                    DateTime datanasc = DateTime.Parse(sdados[5]);         
                     int nif = int.Parse(sdados[6]);
 
                     Cliente cliente = new Cliente(nome, morada, email, password, contacto, datanasc, nif);
@@ -95,7 +101,7 @@ namespace DLL_Dados
         {
             foreach (Cliente cliente in CLIENTE)
             {
-                Console.WriteLine("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}",
+                Console.WriteLine("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}\n",
                                  cliente.Nome, cliente.Morada, cliente.Email, cliente.Password, cliente.Contacto, 
                                  cliente.DataNascimento.ToShortDateString(), cliente.NIF);
             }
@@ -113,6 +119,19 @@ namespace DLL_Dados
             }
             return false;
         }
+
+        public bool AuthCliente(int NIF, string Password)
+        {
+            foreach (Cliente cliente in clientes)
+            {
+                if (cliente.NIF == NIF && cliente.Password == Password)
+                {
+                    return true;
+                }
+            }
+            return false; // Alterado de true para false, indicando que a autenticação falhou.
+        }
+
         #endregion
     }
 }

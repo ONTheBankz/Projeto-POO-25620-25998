@@ -56,12 +56,12 @@ namespace DLL_Objetos
         #endregion
 
         #region OPERADORES
-        // Sobrecarga do operador de igualdade para comparar dois admins com base no ID de admin.
+        // Operador de igualdade para comparar dois objetos Admin.
         public static bool operator ==(Admin a1, Admin a2)
         {
-            return a1.idAdmin == a2.idAdmin;
+            return a1.ID == a2.ID;
         }
-        // Sobrecarga do operador de desigualdade para negar a igualdade entre dois admins.
+        // Operador de desigualdade para negar a igualdade entre dois admins.
         public static bool operator !=(Admin a1, Admin a2)
         {
             return !(a1 == a2);

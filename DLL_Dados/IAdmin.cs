@@ -15,6 +15,8 @@ namespace DLL_Dados
 {
     internal interface IAdmin
     {
-
+        bool LerAdmin(string a);
+        bool ExisteAdmin(int ID);
+        bool AuthAdmin(int ID, string Password);
     }
 }
