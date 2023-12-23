@@ -97,6 +97,12 @@ namespace DLL_Dados
             return true;
         }
 
+        public bool RemoverQuarto(Quarto q)
+        {
+            quartos.Remove(q);
+            return true;
+        }
+
         public bool ListarQuartos()
         {
             foreach (Quarto quarto in QUARTO)

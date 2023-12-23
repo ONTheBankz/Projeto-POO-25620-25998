@@ -40,11 +40,11 @@ namespace DLL_Dados
 
         #region OUTROS MÉTODOS
 
-        public bool GravarAlojamento(string a)
+        public bool GravarAlojamento(string al)
         {
             try
             {
-                using (StreamWriter writer = File.CreateText(a))
+                using (StreamWriter writer = File.CreateText(al))
                 {
                     foreach (var alojamento in alojamentos)
                     {
@@ -60,15 +60,15 @@ namespace DLL_Dados
             }
         }
 
-        public bool LerAlojamento(string a)
+        public bool LerAlojamento(string al)
         {
-            if (!File.Exists(a))
+            if (!File.Exists(al))
             {
                 // Se o ficheiro não existir, cria um novo ficheiro vazio
-                using (File.Create(a)) { }
+                using (File.Create(al)) { }
                 return false; // Retorna falso porque não há dados para ler
             }
-            using (StreamReader sr = File.OpenText(a))
+            using (StreamReader sr = File.OpenText(al))
             {
                 string linha = sr.ReadLine();
                 while (linha != null)
@@ -89,9 +89,15 @@ namespace DLL_Dados
             return true;
         }
 
-        public bool InserirAlojamento(Alojamento a)
+        public bool InserirAlojamento(Alojamento al)
         {
-            alojamentos.Add(a);
+            alojamentos.Add(al);
+            return true;
+        }
+
+        public bool RemoverAlojamento(Alojamento al)
+        {
+            alojamentos.Remove(al);
             return true;
         }
 

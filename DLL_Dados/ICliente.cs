@@ -18,6 +18,7 @@ namespace DLL_Dados
         bool GravarCliente(string c);
         bool LerCliente(string c);
         bool InserirCliente(Cliente c);
+        bool RemoverCliente(Cliente c);
         bool ListarClientes();
         bool ExisteCliente(int NIF);
         bool AuthCliente(int NIF, string Password);

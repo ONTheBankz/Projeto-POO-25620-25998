@@ -19,6 +19,7 @@ namespace DLL_Dados
         bool GravarFunc(string f);
         bool LerFunc(string f);
         bool InserirFunc(Funcionario f);
+        bool RemoverFunc(Funcionario f);
         bool ListarFunc();
         bool ExisteFunc(int ID);
         bool AuthFunc(int ID, string Password);

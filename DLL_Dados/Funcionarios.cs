@@ -100,6 +100,12 @@ namespace DLL_Dados
             return true;
         }
 
+        public bool RemoverFunc(Funcionario f)
+        {
+            funcionarios.Remove(f);
+            return true;
+        }
+
         public bool ListarFunc()
         {
             foreach (Funcionario funcionario in FUNCIONARIO)

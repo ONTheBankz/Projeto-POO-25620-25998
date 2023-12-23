@@ -36,6 +36,7 @@ public class MenuAdmin
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Cliente");
                 Console.WriteLine("2. Listar Clientes");
+                Console.WriteLine("3. Remover Clientes");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -56,6 +57,11 @@ public class MenuAdmin
                         Console.WriteLine();
                         regras.ListarClientes();
                         break;
+                    case 3:
+                        Console.WriteLine("===== Remover Clientes =====");
+                        Console.WriteLine();
+                        regras.RemoverCliente();
+                        break;
                     case 0:
 
                         break;
@@ -70,6 +76,7 @@ public class MenuAdmin
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Funcionário");
                 Console.WriteLine("2. Listar Funcionários");
+                Console.WriteLine("3. Remover Funcionários");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -90,6 +97,11 @@ public class MenuAdmin
                         Console.WriteLine();
                         regras.ListarFunc();
                         break;
+                    case 3:
+                        Console.WriteLine("===== Remover Funcionários =====");
+                        Console.WriteLine();
+                        regras.RemoverFunc();
+                        break;
                     case 0:
 
                         break;
@@ -104,6 +116,7 @@ public class MenuAdmin
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Alojamento");
                 Console.WriteLine("2. Listar Alojamentos");
+                Console.WriteLine("3. Remover Alojamentos");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -124,6 +137,11 @@ public class MenuAdmin
                         Console.WriteLine();
                         regras.ListarAlojamentos();
                         break;
+                    case 3:
+                        Console.WriteLine("===== Remover Alojamentos =====");
+                        Console.WriteLine();
+                        regras.RemoverAlojamento();
+                        break;
                     case 0:
 
                         break;
@@ -138,6 +156,7 @@ public class MenuAdmin
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Quarto");
                 Console.WriteLine("2. Listar Quartos");
+                Console.WriteLine("3. Remover Quartos");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -157,6 +176,11 @@ public class MenuAdmin
                         Console.WriteLine("===== Listar Quartos =====");
                         Console.WriteLine();
                         regras.ListarQuartos();
+                        break;
+                    case 3:
+                        Console.WriteLine("===== Remover Quartos =====");
+                        Console.WriteLine();
+                        regras.RemoverQuarto();
                         break;
                     case 0:
 

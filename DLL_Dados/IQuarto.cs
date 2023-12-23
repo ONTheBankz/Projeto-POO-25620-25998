@@ -18,6 +18,7 @@ namespace DLL_Dados
         bool GravarQuarto(string q);
         bool LerQuarto(string q);
         bool InserirQuarto(Quarto q);
+        bool RemoverQuarto(Quarto q);
         bool ListarQuartos();
         bool ExisteQuarto(int ID);
     }

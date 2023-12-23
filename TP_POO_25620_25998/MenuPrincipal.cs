@@ -37,10 +37,6 @@ public class MenuPrincipal
                     MenuCliente mc = new MenuCliente();
                     mc.MostrarMenuC();
                 }
-                else
-                {
-
-                }
                 break;
 
             case 2:
@@ -52,10 +48,6 @@ public class MenuPrincipal
                     MenuAdmin ma = new MenuAdmin();
                     ma.MostrarMenuA();
                 }
-                else
-                {
-                    // Tratar caso a autenticação do funcionário falhe
-                }
                 break;
 
             case 3:
@@ -66,10 +58,6 @@ public class MenuPrincipal
                     // Autenticação bem-sucedida, mostra o menu
                     MenuFunc mf = new MenuFunc();
                     mf.MostrarMenuF();
-                }
-                else
-                {
-
                 }
                 break;
         

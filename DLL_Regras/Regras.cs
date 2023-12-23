@@ -37,6 +37,27 @@ namespace DLL_Regras
             return false;
         }
 
+        public bool RemoverCliente()
+        {
+            Clientes clientes = new Clientes();
+            IO io = new IO();
+            int nif;
+            io.RemoverCliente(out nif);
+
+            if (clientes.ExisteCliente(nif))
+            {
+                Cliente cliente = new Cliente();
+                cliente.NIF = nif;
+
+                clientes.RemoverCliente(cliente);
+
+                return true;
+            }
+
+            Console.WriteLine("Cliente não encontrado ou não removido. NIF não existe.");
+            return false;
+        }
+
         public bool LoginCliente()
         {
             Clientes clientes = new Clientes();
@@ -101,6 +122,27 @@ namespace DLL_Regras
             return false;
         }
 
+        public bool RemoverAlojamento()
+        {
+            Alojamentos alojamentos = new Alojamentos();
+            IO io = new IO();
+            int id;
+            io.RemoverAlojamento(out id);
+
+            if (alojamentos.ExisteAlojamento(id))
+            {
+                Alojamento alojamento = new Alojamento();
+                alojamento.ID = id;
+
+                alojamentos.RemoverAlojamento(alojamento);
+
+                return true;
+            }
+
+            Console.WriteLine("Cliente não encontrado ou não removido. NIF não existe.");
+            return false;
+        }
+
         public bool ListarAlojamentos()
         {
             Alojamentos alojamentos = new Alojamentos();
@@ -138,7 +180,7 @@ namespace DLL_Regras
             DateTime dataNascimento;
             int alojamentoID;
 
-            io.InserirFunc(Alojamentos.ALOJAMENTO, out idFunc, out nome, out email, out password, out contacto, out dataNascimento, out alojamentoID);
+            io.InserirFunc(out idFunc, out nome, out email, out password, out contacto, out dataNascimento, out alojamentoID);
 
             if (funcionarios.ExisteFunc(idFunc) == false)
             {
@@ -149,6 +191,27 @@ namespace DLL_Regras
                 return true;
             }
 
+            return false;
+        }
+
+        public bool RemoverFunc()
+        {
+            Funcionarios funcionarios = new Funcionarios();
+            IO io = new IO();
+            int id;
+            io.RemoverFunc(out id);
+
+            if (funcionarios.ExisteFunc(id))
+            {
+                Funcionario funcionario = new Funcionario();
+                funcionario.ID = id;
+
+                funcionarios.RemoverFunc(funcionario);
+
+                return true;
+            }
+
+            Console.WriteLine("Funcionário não encontrado ou não removido. ID não existe.");
             return false;
         }
 
@@ -208,7 +271,7 @@ namespace DLL_Regras
             decimal valor;
             int alojamentoID;
 
-            io.InserirQuarto(Alojamentos.ALOJAMENTO, out idQuarto, out tipo, out disponibilidade, out valor, out alojamentoID);
+            io.InserirQuarto(out idQuarto, out tipo, out disponibilidade, out valor, out alojamentoID);
             if (quartos.ExisteQuarto(idQuarto) == false)
             {
                 Alojamento alojamento = new Alojamento { ID = alojamentoID };
@@ -218,6 +281,27 @@ namespace DLL_Regras
                 return true;
             }
 
+            return false;
+        }
+
+        public bool RemoverQuarto()
+        {
+            Quartos quartos = new Quartos();
+            IO io = new IO();
+            int id;
+            io.RemoverQuarto(out id);
+
+            if (quartos.ExisteQuarto(id))
+            {
+                Quarto quarto = new Quarto();
+                quarto.ID = id;
+
+                quartos.RemoverQuarto(quarto);
+
+                return true;
+            }
+
+            Console.WriteLine("Quarto não encontrado ou não removido. ID não existe.");
             return false;
         }
 

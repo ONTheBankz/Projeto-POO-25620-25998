@@ -47,7 +47,7 @@ namespace DLL_Dados
                 {
                     foreach (var cliente in clientes)
                     {
-                       writer.WriteLine($"{cliente.Nome}#{cliente.Morada}#{cliente.Email}#{cliente.Password}#{cliente.Contacto}#{cliente.DataNascimento}#{cliente.NIF}");
+                        writer.WriteLine($"{cliente.Nome}#{cliente.Morada}#{cliente.Email}#{cliente.Password}#{cliente.Contacto}#{cliente.DataNascimento}#{cliente.NIF}");
                     }
                 }
                 return true;
@@ -78,7 +78,7 @@ namespace DLL_Dados
                     string email = (sdados[2]);
                     string password = (sdados[3]);
                     int contacto = int.Parse(sdados[4]);
-                    DateTime datanasc = DateTime.Parse(sdados[5]);         
+                    DateTime datanasc = DateTime.Parse(sdados[5]);
                     int nif = int.Parse(sdados[6]);
 
                     Cliente cliente = new Cliente(nome, morada, email, password, contacto, datanasc, nif);
@@ -97,12 +97,18 @@ namespace DLL_Dados
             return true;
         }
 
+        public bool RemoverCliente(Cliente c)
+        {
+            clientes.Remove(c);
+            return true;
+        }
+
         public bool ListarClientes()
         {
             foreach (Cliente cliente in CLIENTE)
             {
                 Console.WriteLine("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}\n",
-                                 cliente.Nome, cliente.Morada, cliente.Email, cliente.Password, cliente.Contacto, 
+                                 cliente.Nome, cliente.Morada, cliente.Email, cliente.Password, cliente.Contacto,
                                  cliente.DataNascimento.ToShortDateString(), cliente.NIF);
             }
             return true;

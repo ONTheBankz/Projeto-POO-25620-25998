@@ -17,7 +17,7 @@ namespace TP_POO_25620_25998
             regras.LerFunc("funcionarios");
             regras.LerAlojamento("alojamentos");
             regras.LerQuarto("quartos");
-           
+
             MenuPrincipal m = new MenuPrincipal();
             m.MostrarMenuP();
          
