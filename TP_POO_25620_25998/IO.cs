@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 using DLL_Objetos;
 using DLL_Dados;
 using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace TP_POO_25620_25998
 {
     public class IO
     {
+        private static int NIFClienteLogin;
+
         #region CLIENTES
+
         public void InserirCliente(out string nome, out string morada, out string email, out string password, out int contacto, out DateTime dataNascimento, out int nif)
         {
             nome = string.Empty;
@@ -67,7 +71,6 @@ namespace TP_POO_25620_25998
 
         public void LoginCliente(out string password, out int nif)
         {
-
             password = string.Empty;
             nif = 0;
 
@@ -77,7 +80,8 @@ namespace TP_POO_25620_25998
             Console.WriteLine("Insira a password do cliente");
             password = Console.ReadLine();
 
-        }
+            NIFClienteLogin = nif;
+    }
 
         #endregion
 
@@ -227,8 +231,32 @@ namespace TP_POO_25620_25998
             Console.WriteLine("Insira o ID do quarto");
             id = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Insira o tipo do quarto");
-            tipo = Console.ReadLine();
+            Console.WriteLine("Escolha o tipo do quarto (1 - Duplo, 2 - Triplo, 3 - Familiar, 4 - Suíte):");
+            int tipoEscolhido = int.Parse(Console.ReadLine());
+
+            switch (tipoEscolhido)
+            {
+                case 1:
+                    tipo = "Duplo";
+                    break;
+
+                case 2:
+                    tipo = "Triplo";
+                    break;
+
+                case 3:
+                    tipo = "Familiar";
+                    break;
+
+                case 4:
+                    tipo = "Suíte";
+                    break;
+                
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Tipo de quarto não reconhecido.");
+                    return; 
+            }
 
             Console.WriteLine("Insira a disponibilidade (S/N)");
             string disponibilidadeInput = Console.ReadLine();
@@ -260,7 +288,7 @@ namespace TP_POO_25620_25998
             Console.WriteLine("Insira o ID do quarto que deseja remover");
             Console.WriteLine();
             Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Tipo de Quarto", "ID do Quarto", "ID do Alojamento");
-           
+
             foreach (var quarto in Quartos.QUARTO)
             {
                 Console.WriteLine("{0,-20} {1,-20} {2,-20}", quarto.Tipo, quarto.ID, quarto.Alojamento.ID);
@@ -269,6 +297,108 @@ namespace TP_POO_25620_25998
             Console.WriteLine();
             Console.Write("Digite o ID do quarto: ");
             id = int.Parse(Console.ReadLine());
+        }
+
+        #endregion
+
+        #region RESERVAS
+
+        public void InserirReserva(out int id, out DateTime dataInicio, out DateTime dataFim, out int numPessoas, out int clienteNIF, out int alojamentoID, out int quartoID, out decimal precoTotal)
+        {
+            decimal valorQuarto = 0;
+            int quantPessoas = 0;
+            clienteNIF = NIFClienteLogin;
+
+            Console.WriteLine("Insira o ID da reserva");
+            id = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            // Títulos para ALOJAMENTOS
+            Console.WriteLine("ALOJAMENTOS");
+            Console.WriteLine();
+            Console.WriteLine("{0,-20} {1,-20}", "Nome do Alojamento", "ID do Alojamento");
+
+            foreach (var alojamento in Alojamentos.ALOJAMENTO)
+            {
+                Console.WriteLine("{0,-20} {1,-20}", alojamento.Nome, alojamento.ID);
+            }
+
+            Console.WriteLine();
+            Console.Write("Digite o ID do alojamento: ");
+            alojamentoID = int.Parse(Console.ReadLine());
+
+            // Variável local para armazenar alojamentoID
+            int alojamentoTemp = alojamentoID;
+
+            // Títulos para datas e Nº de Pessoas
+            Console.WriteLine();
+            Console.WriteLine("Insira a data de início da reserva (formato dd/MM/yyyy)");
+            dataInicio = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.WriteLine("Insira a data de fim da reserva (formato dd/MM/yyyy)");
+            dataFim = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.Write("Digite o Nº de Pessoas: ");
+            numPessoas = int.Parse(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.WriteLine("QUARTOS");
+            Console.WriteLine();
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Tipo do Quarto", "ID do Quarto", "Valor Estadia (por dia)");
+
+            // Mostrar quartos disponíveis no alojamento selecionado
+            foreach (var quarto in Quartos.QUARTO.Where(q => q.Alojamento.ID == alojamentoTemp && q.Disponibilidade == true))
+            {
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", quarto.Tipo, quarto.ID, quarto.Valor);
+            }
+
+            Console.WriteLine();
+            Console.Write("Digite o ID do quarto: ");
+            quartoID = int.Parse(Console.ReadLine());
+
+            int quartoTemp = quartoID;
+           
+            var quartoEscolhido = Quartos.QUARTO.FirstOrDefault(q => q.ID == quartoTemp);
+
+            // Verificar se o número de pessoas escolhido é compatível com o quarto
+            quantPessoas = ObterQuant(quartoEscolhido.Tipo);
+            valorQuarto = quartoEscolhido.Valor;
+
+            if (numPessoas > quantPessoas || numPessoas < quantPessoas)
+            {
+                precoTotal = 0;
+                Console.WriteLine();
+                Console.WriteLine("Número de pessoas é maior ou menor do que a capacidade do quarto.");
+                Console.WriteLine();
+                return;
+            }
+
+            // Lógica para calcular o preço total da reserva
+            int numDias = (int)(dataFim - dataInicio).TotalDays;
+            decimal preco = valorQuarto * numDias;
+            Console.WriteLine();
+            Console.WriteLine($"Preço total da reserva: {preco}");
+            Console.WriteLine();
+            precoTotal = preco;
+        }
+
+        private int ObterQuant(string tipoQuarto)
+        {
+            switch (tipoQuarto.ToLower())
+            {
+                case "duplo":
+                    return 2;
+                case "triplo":
+                    return 3;
+                case "familiar":
+                    return 4;
+                case "suíte":
+                    return 5;
+                default:
+                    return 0; 
+            }
         }
 
         #endregion

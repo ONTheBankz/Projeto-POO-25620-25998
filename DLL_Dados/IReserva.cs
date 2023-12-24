@@ -15,5 +15,9 @@ namespace DLL_Dados
 {
     internal interface IReserva
     {
+        bool GravarReserva(string r);
+        bool LerReserva(string r);
+        bool InserirReserva(Reserva r);
+        bool ExisteReserva(int ID);
     }
 }

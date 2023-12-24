@@ -33,7 +33,7 @@ public class MenuCliente
             case 1:
                 Console.WriteLine("===== Fazer Reserva =====");
                 Console.WriteLine();
-                //regras.CriarReserva();
+                regras.InserirReserva();
                 break;
             case 2:
                 Console.WriteLine("===== Cancelar Reserva =====");
@@ -43,7 +43,7 @@ public class MenuCliente
             case 3:
                 Console.WriteLine("===== Listar Reservas =====");
                 Console.WriteLine();
-                //regras.ListarReserva
+                regras.ListarReserva();
                 break;
             case 4:
                 Console.WriteLine("===== Alterar Dados =====");

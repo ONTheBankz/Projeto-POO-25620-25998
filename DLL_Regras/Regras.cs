@@ -359,5 +359,58 @@ namespace DLL_Regras
         }
 
         #endregion
+
+        #region RESERVAS
+
+        public bool InserirReserva()
+        {
+            Reservas reservas = new Reservas();
+            IO io = new IO();
+            int id;
+            DateTime dataInicio;
+            DateTime dataFim;
+            int numPessoas;
+            int clienteNIF;
+            int alojamentoID;
+            int quartoID;
+            decimal precoTotal;
+
+            io.InserirReserva(out id, out dataInicio, out dataFim, out numPessoas, out clienteNIF, out alojamentoID, out quartoID, out precoTotal);
+            if (reservas.ExisteReserva(id) == false)
+            {
+                Cliente cliente = new Cliente { NIF = clienteNIF };
+                Alojamento alojamento = new Alojamento { ID = alojamentoID };
+                Quarto quarto = new Quarto { ID = quartoID };
+               
+                Reserva reserva = new Reserva(id, dataInicio, dataFim, numPessoas, cliente, alojamento, quarto, precoTotal);
+                reservas.InserirReserva(reserva);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ListarReserva()
+        {
+            Reservas reservas= new Reservas();
+            reservas.ListarReserva();
+            return true;
+        }
+
+        public bool GravarReserva(string r)
+        {
+            Reservas reservas = new Reservas();
+            reservas.GravarReserva(r);
+            return true;
+        }
+
+        public bool LerReserva(string r)
+        {
+            Reservas reservas = new Reservas();
+            reservas.LerReserva(r);
+            return true;
+        }
+
+        #endregion
     }
 }

@@ -17,7 +17,9 @@ namespace TP_POO_25620_25998
             regras.LerFunc("funcionarios");
             regras.LerAlojamento("alojamentos");
             regras.LerQuarto("quartos");
-
+            regras.LerReserva("reservas");
+            IO io = new IO();
+    
             MenuPrincipal m = new MenuPrincipal();
             m.MostrarMenuP();
          
@@ -25,6 +27,7 @@ namespace TP_POO_25620_25998
             regras.GravarFunc(@"funcionarios");
             regras.GravarAlojamento(@"alojamentos");
             regras.GravarQuarto(@"quartos");
+            regras.GravarReserva(@"reservas");
       
         }
     }
