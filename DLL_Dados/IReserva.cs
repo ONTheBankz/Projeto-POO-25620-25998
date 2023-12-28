@@ -18,6 +18,8 @@ namespace DLL_Dados
         bool GravarReserva(string r);
         bool LerReserva(string r);
         bool InserirReserva(Reserva r);
+        bool RemoverReserva(Reserva r);
+        bool ListarReserva();
         bool ExisteReserva(int ID);
     }
 }

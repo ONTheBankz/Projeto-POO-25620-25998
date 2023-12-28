@@ -28,17 +28,17 @@ public class MenuCliente
 
         Console.Clear();
 
-        switch (opcaoCliente) 
+        switch (opcaoCliente)
         {
             case 1:
                 Console.WriteLine("===== Fazer Reserva =====");
                 Console.WriteLine();
-                regras.InserirReserva();
+                regras.InserirReservaC();
                 break;
             case 2:
                 Console.WriteLine("===== Cancelar Reserva =====");
                 Console.WriteLine();
-                //regras.CancelarReserva
+                regras.RemoverReservaC();
                 break;
             case 3:
                 Console.WriteLine("===== Listar Reservas =====");
@@ -51,19 +51,19 @@ public class MenuCliente
                 //regras.EditarCliente
                 break;
             case 0:
-                Console.WriteLine("A sair do programa!");
+
                 break;
             default:
                 Console.WriteLine("Opção inválida. Tente novamente.");
                 break;
         }
 
-        if (opcaoCliente != 0) 
+        if (opcaoCliente != 0)
         {
             Console.WriteLine("Pressione qualquer tecla para continuar...");
             Console.ReadKey();
             Console.Clear();
-            MostrarMenuC(); 
+            MostrarMenuC();
         }
     }
 }

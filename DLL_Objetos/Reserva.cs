@@ -32,9 +32,6 @@ namespace DLL_Objetos
         // Referência à instância de Cliente associada à reserva.
         private Cliente cliente;
 
-        // Referência à instância de Alojamento associada à reserva.
-        private Alojamento alojamento;
-
         // Referência à instância de Quarto associada à reserva.
         private Quarto quarto;
 
@@ -54,19 +51,17 @@ namespace DLL_Objetos
             dataFim = DateTime.MinValue;
             numPessoas = 0;
             cliente = null;
-            alojamento = null;
             quarto = null;
             precoTotal = 0;
         }
         // Construtor parametrizado inicializa a Reserva com valores específicos.
-        public Reserva(int idReserva, DateTime dataInicio, DateTime dataFim, int numPessoas, Cliente cliente, Alojamento alojamento, Quarto quarto, decimal precoTotal)
+        public Reserva(int idReserva, DateTime dataInicio, DateTime dataFim, int numPessoas, Cliente cliente, Quarto quarto, decimal precoTotal)
         {
             this.idReserva = idReserva;    
             this.dataInicio = dataInicio;
             this.dataFim = dataFim;
             this.numPessoas = numPessoas;
             this.cliente = cliente;
-            this.alojamento = alojamento;
             this.quarto = quarto;
             this.precoTotal = precoTotal;
         }
@@ -105,12 +100,6 @@ namespace DLL_Objetos
             set { cliente = value; }
         }
 
-        public Alojamento Alojamento
-        {
-            get { return alojamento; }
-            set { alojamento = value; }
-        }
-
         public Quarto Quarto
         {
             get { return quarto; }
@@ -143,8 +132,8 @@ namespace DLL_Objetos
         // Sobrecarga do método ToString para obter uma representação de string do objeto Reserva.
         public override string ToString()
         {
-            return string.Format("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Alojamento: {5}\nID Quarto: {6}\nPreço Total: {7}\n",
-                                 idReserva, dataInicio.ToShortDateString(), dataFim.ToShortDateString(), numPessoas, cliente.NIF, alojamento.ID, quarto.ID, precoTotal);
+            return string.Format("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Quarto: {5}\nPreço Total: {6}\n",
+                                 idReserva, dataInicio.ToShortDateString(), dataFim.ToShortDateString(), numPessoas, cliente.NIF, quarto.ID, precoTotal);
         }
 
         // Sobrecarga do método Equals para comparar objetos Reserva.

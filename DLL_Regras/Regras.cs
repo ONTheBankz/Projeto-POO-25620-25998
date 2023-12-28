@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DLL_Objetos;
 using DLL_Dados;
 using TP_POO_25620_25998;
+using System.Runtime.Remoting.Messaging;
+using System.Diagnostics.Contracts;
 
 namespace DLL_Regras
 {
@@ -53,8 +55,9 @@ namespace DLL_Regras
 
                 return true;
             }
-
+            Console.Clear();
             Console.WriteLine("Cliente não encontrado ou não removido. NIF não existe.");
+            Console.WriteLine();
             return false;
         }
 
@@ -138,8 +141,9 @@ namespace DLL_Regras
 
                 return true;
             }
-
+            Console.Clear();
             Console.WriteLine("Cliente não encontrado ou não removido. NIF não existe.");
+            Console.WriteLine();
             return false;
         }
 
@@ -210,8 +214,9 @@ namespace DLL_Regras
 
                 return true;
             }
-
+            Console.Clear();
             Console.WriteLine("Funcionário não encontrado ou não removido. ID não existe.");
+            Console.WriteLine();
             return false;
         }
 
@@ -300,8 +305,9 @@ namespace DLL_Regras
 
                 return true;
             }
-
+            Console.Clear();
             Console.WriteLine("Quarto não encontrado ou não removido. ID não existe.");
+            Console.WriteLine();
             return false;
         }
 
@@ -362,27 +368,47 @@ namespace DLL_Regras
 
         #region RESERVAS
 
-        public bool InserirReserva()
+        public bool InserirReservaC()
         {
             Reservas reservas = new Reservas();
+            Quartos quartos = new Quartos();
             IO io = new IO();
             int id;
             DateTime dataInicio;
             DateTime dataFim;
             int numPessoas;
             int clienteNIF;
-            int alojamentoID;
             int quartoID;
+            int quantPessoas;
             decimal precoTotal;
 
-            io.InserirReserva(out id, out dataInicio, out dataFim, out numPessoas, out clienteNIF, out alojamentoID, out quartoID, out precoTotal);
-            if (reservas.ExisteReserva(id) == false)
+            Random random = new Random();
+
+            // Loop para gerar um ID de reserva único
+            do
+            {
+                id = random.Next(1, 1000); // Defina o intervalo conforme necessário
+            } while (reservas.ExisteReserva(id));
+
+            // Verifica se io.InserirClienteC foi bem-sucedido antes de prosseguir
+            if (io.InserirReservaC(out dataInicio, out dataFim, out numPessoas, out clienteNIF, out quartoID, out precoTotal))
             {
                 Cliente cliente = new Cliente { NIF = clienteNIF };
-                Alojamento alojamento = new Alojamento { ID = alojamentoID };
                 Quarto quarto = new Quarto { ID = quartoID };
-               
-                Reserva reserva = new Reserva(id, dataInicio, dataFim, numPessoas, cliente, alojamento, quarto, precoTotal);
+                Reserva reserva = new Reserva(id, dataInicio, dataFim, numPessoas, cliente, quarto, precoTotal);
+
+                var quartoEscolhido = Quartos.QUARTO.FirstOrDefault(q => q.ID == quartoID);
+
+                quantPessoas = quartos.ObterQuant(quartoEscolhido.Tipo);
+
+                if (numPessoas > quantPessoas)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Número de pessoas excede a capacidade do quarto.");
+                    Console.WriteLine();
+                    return false;
+                }
+
                 reservas.InserirReserva(reserva);
                 return true;
             }
@@ -390,9 +416,106 @@ namespace DLL_Regras
             return false;
         }
 
+        public bool InserirReservaA()
+        {
+            Reservas reservas = new Reservas();
+            Clientes clientes = new Clientes();
+            Quartos quartos = new Quartos();
+            IO io = new IO();
+            int id;
+            DateTime dataInicio;
+            DateTime dataFim;
+            int numPessoas;
+            int clienteNIF;
+            int quartoID;
+            int quantPessoas;
+            decimal precoTotal;
+
+            Random random = new Random();
+
+            // Loop para gerar um ID de reserva único
+            do
+            {
+                id = random.Next(1, 100); // Defina o intervalo conforme necessário
+            } while (reservas.ExisteReserva(id));
+
+            // Verifica se io.InserirReservaA foi bem-sucedido antes de prosseguir
+            if (io.InserirReservaA(out dataInicio, out dataFim, out numPessoas, out clienteNIF, out quartoID, out precoTotal))
+            {
+                if (clientes.ExisteCliente(clienteNIF))
+                {
+                    Cliente cliente = new Cliente { NIF = clienteNIF };
+                    Quarto quarto = new Quarto { ID = quartoID };
+                    Reserva reserva = new Reserva(id, dataInicio, dataFim, numPessoas, cliente, quarto, precoTotal);
+
+                    var quartoEscolhido = Quartos.QUARTO.FirstOrDefault(q => q.ID == quartoID);
+
+                    quantPessoas = quartos.ObterQuant(quartoEscolhido.Tipo);
+
+                    if (numPessoas > quantPessoas)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Número de pessoas excede a capacidade do quarto.");
+                        Console.WriteLine();
+                        return false;
+                    }
+
+                    reservas.InserirReserva(reserva);
+                    return true;
+                }
+                Console.Clear();
+                Console.WriteLine("Não existe nenhum cliente com o NIF indicado");
+                Console.WriteLine();
+            }
+
+            return false;
+        }
+
+        public bool RemoverReservaC()
+        {
+            Reservas reservas = new Reservas();
+            IO io = new IO();
+            int id;
+            io.RemoverReservaC(out id);
+
+            if (reservas.ExisteReserva(id))
+            {
+                Reserva reserva = new Reserva();
+                reserva.ID = id;
+
+                reservas.RemoverReserva(reserva);
+                return true;
+            }
+            Console.Clear();
+            Console.WriteLine("Reserva não encontrada ou não removida. ID não existe.");
+            Console.WriteLine();
+            return false;
+        }
+
+        public bool RemoverReservaA()
+        {
+            Reservas reservas = new Reservas();
+            IO io = new IO();
+            int id;
+            io.RemoverReservaA(out id);
+
+            if (reservas.ExisteReserva(id))
+            {
+                Reserva reserva = new Reserva();
+                reserva.ID = id;
+
+                reservas.RemoverReserva(reserva);
+                return true;
+            }
+            Console.Clear();
+            Console.WriteLine("Reserva não encontrada ou não removida. ID não existe.");
+            Console.WriteLine();
+            return false;
+        }
+
         public bool ListarReserva()
         {
-            Reservas reservas= new Reservas();
+            Reservas reservas = new Reservas();
             reservas.ListarReserva();
             return true;
         }
@@ -408,6 +531,75 @@ namespace DLL_Regras
         {
             Reservas reservas = new Reservas();
             reservas.LerReserva(r);
+            return true;
+        }
+
+        #endregion
+
+        #region CHECK_INS
+
+        public bool InserirCheck_I()
+        {
+            Reservas reservas = new Reservas();
+            Check_Ins check_ins = new Check_Ins();
+            IO io = new IO();
+            int id;
+            DateTime dataCheck_I;
+            DateTime dataInicio;
+            DateTime dataFim;
+            int reservaID;
+
+            Random random = new Random();
+
+            // Loop para gerar um ID de check_in único
+            do
+            {
+                id = random.Next(1, 100); // Defina o intervalo conforme necessário
+            } while (check_ins.ExisteCheck_I(id));
+
+            io.InserirCheck_I(out reservaID, out dataCheck_I);
+            if (check_ins.ExisteCheck_I(id) == false)
+            {
+                if (reservas.ExisteReserva(reservaID))
+                {
+                    Reserva reserva = new Reserva { ID = reservaID };
+                    CheckIn checkin = new CheckIn(id, reserva, dataCheck_I);
+
+                    var reservaEscolhida = Reservas.RESERVA.FirstOrDefault(r => r.ID == reservaID);
+
+                    dataInicio = reservaEscolhida.DataInicio;
+                    dataFim = reservaEscolhida.DataFim;
+
+                    if (dataCheck_I < dataInicio || dataCheck_I > dataFim)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Não é possível efetuar check-In para a data desejada");
+                        Console.WriteLine();
+                        return false;
+                    }
+
+                    check_ins.InserirCheck_I(checkin);
+                    return true;
+                }
+                Console.Clear();
+                Console.WriteLine("Não existe nenhuma reserva com o ID indicado");
+                Console.WriteLine();
+            }
+
+            return false;
+        }
+
+        public bool GravarCheck_I(string ci)
+        {
+            Check_Ins check_ins = new Check_Ins();
+            check_ins.GravarCheck_I(ci);
+            return true;
+        }
+
+        public bool LerCheck_I(string ci)
+        {
+            Check_Ins check_ins = new Check_Ins();
+            check_ins.LerCheck_I(ci);
             return true;
         }
 

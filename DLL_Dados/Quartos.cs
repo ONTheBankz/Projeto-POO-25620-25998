@@ -125,6 +125,23 @@ namespace DLL_Dados
             return false;
         }
 
+        public int ObterQuant(string tipoQuarto)
+        {
+            switch (tipoQuarto.ToLower())
+            {
+                case "duplo":
+                    return 2;
+                case "triplo":
+                    return 3;
+                case "familiar":
+                    return 4;
+                case "suíte":
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
+
         #endregion
 
     }

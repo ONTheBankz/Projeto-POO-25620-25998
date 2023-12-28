@@ -49,7 +49,7 @@ namespace DLL_Dados
                     foreach (var reserva in reservas)
                     {
                         writer.WriteLine($"{reserva.ID}#{reserva.DataInicio}#{reserva.DataFim}#{reserva.NumPessoas}#{reserva.Cliente.NIF}" +
-                            $"#{reserva.Alojamento.ID}#{reserva.Quarto.ID}#{reserva.PrecoTotal}");
+                            $"#{reserva.Quarto.ID}#{reserva.PrecoTotal}");
                     }
                 }
                 return true;
@@ -79,16 +79,14 @@ namespace DLL_Dados
                     DateTime datainicio = DateTime.Parse(sdados[1]);
                     DateTime datafim = DateTime.Parse(sdados[2]);
                     int numpessoas = int.Parse(sdados[3]);
-                    int clientenif = int.Parse(sdados[4]);
-                    int alojamentoID = int.Parse(sdados[5]);
-                    int quartoID = int.Parse(sdados[6]);
-                    decimal precototal = decimal.Parse(sdados[7]);
+                    int clientenif = int.Parse(sdados[4]);             
+                    int quartoID = int.Parse(sdados[5]);
+                    decimal precototal = decimal.Parse(sdados[6]);
 
                     Cliente cliente = new Cliente { NIF = clientenif };
-                    Alojamento alojamento = new Alojamento { ID = alojamentoID };
                     Quarto quarto = new Quarto { ID = quartoID };
 
-                    Reserva reserva = new Reserva(id, datainicio, datafim, numpessoas, cliente, alojamento, quarto, precototal);
+                    Reserva reserva = new Reserva(id, datainicio, datafim, numpessoas, cliente, quarto, precototal);
 
                     reservas.Add(reserva);
 
@@ -104,13 +102,19 @@ namespace DLL_Dados
             return true;
         }
 
+        public bool RemoverReserva(Reserva r)
+        {
+            reservas.Remove(r);
+            return true;
+        }
+
         public bool ListarReserva()
         {
             foreach (Reserva reserva in RESERVA)
             {
-                Console.WriteLine("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Alojamento: {5}\nID Quarto: {6}\nPreço Total: {7}\n",
+                Console.WriteLine("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Quarto: {5}\nPreço Total: {6}\n",
                                  reserva.ID, reserva.DataInicio.ToShortDateString(), reserva.DataFim.ToShortDateString(), reserva.NumPessoas, reserva.Cliente.NIF, 
-                                 reserva.Alojamento.ID, reserva.Quarto.ID, reserva.PrecoTotal);
+                                 reserva.Quarto.ID, reserva.PrecoTotal);
             }
             return true;
         }

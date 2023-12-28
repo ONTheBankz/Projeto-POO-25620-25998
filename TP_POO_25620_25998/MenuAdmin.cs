@@ -21,6 +21,7 @@ public class MenuAdmin
         Console.WriteLine("2. FUNCIONÁRIOS");
         Console.WriteLine("3. ALOJAMENTOS");
         Console.WriteLine("4. QUARTOS");
+        Console.WriteLine("5. RESERVAS");
         Console.WriteLine();
         Console.WriteLine("0. Sair");
         Console.WriteLine();
@@ -184,6 +185,49 @@ public class MenuAdmin
                         break;
                     case 0:
 
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Tente novamente.");
+                        break;
+                }
+
+                break;
+            case 5:
+                Console.Clear();
+                Console.WriteLine("===== Gestão de Reservas =====");
+                Console.WriteLine();
+                Console.WriteLine("1. Fazer Reserva");
+                Console.WriteLine("2. Cancelar Reserva");
+                Console.WriteLine("3. Listar Reservas");
+                Console.WriteLine();
+                Console.WriteLine("4. Alterar Dados");
+                Console.WriteLine("0. Sair");
+                Console.WriteLine();
+                Console.Write("Opção: ");
+
+                int opcaoReserva = int.Parse(Console.ReadLine());
+
+                Console.Clear();
+
+                switch (opcaoReserva)
+                {
+                    case 1:
+                        Console.WriteLine("===== Fazer Reserva =====");
+                        Console.WriteLine();
+                        regras.InserirReservaA();
+                        break;
+                    case 2:
+                        Console.WriteLine("===== Cancelar Reserva =====");
+                        Console.WriteLine();
+                        regras.RemoverReservaA();
+                        break;
+                    case 3:
+                        Console.WriteLine("===== Listar Reservas =====");
+                        Console.WriteLine();
+                        regras.ListarReserva();
+                        break;
+                    case 0:
+                        Console.WriteLine("A sair do programa!");
                         break;
                     default:
                         Console.WriteLine("Opção inválida. Tente novamente.");

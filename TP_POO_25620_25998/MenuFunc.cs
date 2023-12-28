@@ -37,9 +37,8 @@ public class MenuFunc
                     Console.WriteLine("===== Gestão de Check_IN's =====");
                     Console.WriteLine();
                     Console.WriteLine("1. Fazer Check_IN");
-                    Console.WriteLine("2. Editar Check_IN");
-                    Console.WriteLine("3. Remover Check_IN");
-                    Console.WriteLine("4. Listar Check_IN");
+                    Console.WriteLine("2. Remover Check_IN");
+                    Console.WriteLine("3. Listar Check_IN");
                     Console.WriteLine("0. Voltar");
                     Console.WriteLine();
                     Console.Write("Opção: ");
@@ -53,19 +52,14 @@ public class MenuFunc
                             case 1:
                                 Console.WriteLine("===== Fazer Check_IN =====");
                                 Console.WriteLine();
-                                // regras.FazerCheck_I();
+                                regras.InserirCheck_I();
                                 break;
                             case 2:
-                                Console.WriteLine("===== Editar Check_IN =====");
-                                Console.WriteLine();
-                                // regras.EditarCheck_I();
-                                break;
-                            case 3:
                                 Console.WriteLine("===== Remover Check_IN =====");
                                 Console.WriteLine();
                                 // regras.RemoverCheck_I();
                                 break;
-                            case 4:
+                            case 3:
                                 Console.WriteLine("===== Listar Check_IN's =====");
                                 Console.WriteLine();
                                 // regras.ListarCheck_I();

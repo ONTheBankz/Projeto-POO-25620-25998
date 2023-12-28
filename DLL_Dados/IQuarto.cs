@@ -21,5 +21,6 @@ namespace DLL_Dados
         bool RemoverQuarto(Quarto q);
         bool ListarQuartos();
         bool ExisteQuarto(int ID);
+        int ObterQuant(string tipoQuarto);
     }
 }

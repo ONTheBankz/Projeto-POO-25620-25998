@@ -15,6 +15,9 @@ namespace DLL_Dados
 {
     internal interface ICheck_In
     {
+        bool GravarCheck_I(string ci);
+        bool LerCheck_I(string ci);
+        bool InserirCheck_I(CheckIn ci);
 
     }
 }
