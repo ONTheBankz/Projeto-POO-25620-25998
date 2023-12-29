@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DE618C4-2307-401C-8D6D-45BC63FD1B3C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>TP_POO_25620_25998</RootNamespace>
-    <AssemblyName>TP_POO_25620_25998</AssemblyName>
+    <ProjectGuid>{73657E44-E2EE-49A6-BE2A-2FE287A975F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Exceptions</RootNamespace>
+    <AssemblyName>Exceptions</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DLL_Dados">
-      <HintPath>..\DLL_Regras\bin\Debug\DLL_Dados.dll</HintPath>
-    </Reference>
-    <Reference Include="DLL_Objetos">
-      <HintPath>..\DLL_Regras\bin\Debug\DLL_Objetos.dll</HintPath>
-    </Reference>
-    <Reference Include="DLL_Regras">
-      <HintPath>..\DLL_Regras\bin\Debug\DLL_Regras.dll</HintPath>
-    </Reference>
-    <Reference Include="Exceptions">
-      <HintPath>..\Exceptions\bin\Debug\Exceptions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,16 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO.cs" />
-    <Compile Include="MenuAdmin.cs" />
-    <Compile Include="MenuCliente.cs" />
-    <Compile Include="MenuFunc.cs" />
-    <Compile Include="MenuPrincipal.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ECheck_In.cs" />
+    <Compile Include="ECheck_Out.cs" />
+    <Compile Include="EReserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

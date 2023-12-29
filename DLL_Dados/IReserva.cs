@@ -13,13 +13,19 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para as reservas.
+    /// </summary>
+
     internal interface IReserva
     {
         bool GravarReserva(string r);
         bool LerReserva(string r);
         bool InserirReserva(Reserva r);
         bool RemoverReserva(Reserva r);
-        bool ListarReserva();
         bool ExisteReserva(int ID);
+        int ID(int id);
+        void OrdenarReserva();
     }
 }

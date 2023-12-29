@@ -14,6 +14,11 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para os funcionários.
+    /// </summary>
+
     internal interface IFuncionario
     {
         bool GravarFunc(string f);

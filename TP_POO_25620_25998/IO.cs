@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 using DLL_Objetos;
 using DLL_Dados;
-using System.Diagnostics.Contracts;
-using System.Runtime.InteropServices.ComTypes;
+using DLL_Exceptions;
 
 namespace TP_POO_25620_25998
 {
     public class IO
     {
         private static int NIFClienteLogin;
+        private static int IDFunc;
 
         #region CLIENTES
 
@@ -74,6 +71,71 @@ namespace TP_POO_25620_25998
             Console.Write("Digite o NIF do cliente: ");
             nif = int.Parse(Console.ReadLine());
             Console.WriteLine();
+        }
+
+        public bool EditarCliente(out int op, out string nome, out string morada, out string email, out string password, out int contacto, out DateTime datanasc, out int nif, out int NIFC)
+        {
+            op = 0;
+            NIFC = 0;
+            int opção;
+            nome = string.Empty;
+            morada = string.Empty;
+            email = string.Empty;
+            password = string.Empty;
+            contacto = 0;
+            datanasc = DateTime.MinValue;
+            nif = 0;
+          
+            Console.WriteLine("Insira o NIF do Cliente: ");
+            NIFC = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("O que pretende alterar: (1 - nome, 2 - morada, 3 - email, 4 - password, 5 - contacto, 6 - data de nascimento, 7 - NIF ");
+            opção = int.Parse(Console.ReadLine());
+
+            op = opção; // Defina a opção escolhida
+
+            switch (opção)
+            {
+                case 1:
+                    Console.WriteLine("Insira o novo nome: ");
+                    nome = Console.ReadLine();
+                    return true;
+
+                case 2:
+                    Console.WriteLine("Insira a nova morada: ");
+                    morada = Console.ReadLine();
+                    return true;
+
+                case 3:
+                    Console.WriteLine("Insira o novo email: ");
+                    email = Console.ReadLine();
+                    return true;
+
+                case 4:
+                    Console.WriteLine("Insira a nova password: ");
+                    password = Console.ReadLine();
+                    return true;
+
+                case 5:
+                    Console.WriteLine("Insira o novo contacto: ");
+                    contacto = int.Parse(Console.ReadLine());
+                    return true;
+
+                case 6:
+                    Console.WriteLine("Insira a nova data de nascimento (formato: dd/mm/yyyy): ");
+                    datanasc = DateTime.Parse(Console.ReadLine());
+                    return true;
+
+                case 7:
+                    Console.WriteLine("Insira o novo NIF: ");
+                    nif = int.Parse(Console.ReadLine());
+                    return true;
+
+                default:
+                    // Operação não suportada
+                    Console.WriteLine("Operação não suportada.");
+                    return false;
+            }
         }
 
         public void LoginCliente(out string password, out int nif)
@@ -176,7 +238,6 @@ namespace TP_POO_25620_25998
 
         public void LoginFunc(out string password, out int id)
         {
-
             password = string.Empty;
             id = 0;
 
@@ -186,9 +247,10 @@ namespace TP_POO_25620_25998
             Console.WriteLine("Insira a password do funcionário");
             password = Console.ReadLine();
 
+            IDFunc = id;
         }
 
-        #endregion
+        #endregion              
 
         #region ALOJAMENTOS
 
@@ -245,8 +307,7 @@ namespace TP_POO_25620_25998
             disponibilidade = false;
             valor = 0;
             alojamentoID = 0;
-
-            Console.WriteLine();
+       
             Console.WriteLine("Insira o ID do quarto");
             id = int.Parse(Console.ReadLine());
 
@@ -304,6 +365,21 @@ namespace TP_POO_25620_25998
             alojamentoID = int.Parse(Console.ReadLine());
         }
 
+        public void ListarQuartoF()
+        {
+            Quartos quartos = new Quartos(); // Cria uma instância de Quartos.
+
+            foreach (var quarto in Quartos.QUARTO)
+            {
+                // Verifica se o quarto pertence ao alojamento do funcionário
+                if (Funcionarios.FUNCIONARIO.Any(f => f.ID == IDFunc && f.Alojamento.ID == quarto.Alojamento.ID))
+                {
+                    Console.WriteLine("ID Quarto: {0}\nTipo Quarto: {1}\nDisponibilidade: {2}\nValor por Noite: {3}\nID Alojamento: {4}\n",
+                                 quarto.ID, quarto.Tipo, quarto.Disponibilidade, quarto.Valor, quarto.Alojamento.ID);
+                }
+            }
+        }
+
         public void RemoverQuarto(out int id)
         {
             id = 0;
@@ -327,14 +403,13 @@ namespace TP_POO_25620_25998
 
         #region RESERVAS
 
-        public bool InserirReservaC(out DateTime dataInicio, out DateTime dataFim, out int numPessoas, out int clienteNIF, out int quartoID, out decimal precoTotal)
+        public bool InserirReservaC(out DateTime dataInicio, out DateTime dataFim, out int numPessoas, out int clienteNIF, out int quartoID, out decimal PrecoTotal)
         {
-            decimal valorQuarto = 0;            
             string tipoQ;
-            int idQ;
             decimal valorQ;
-            int alojQ;
-
+            int idQ;
+            int alojQ;        
+            PrecoTotal = 0;
             clienteNIF = NIFClienteLogin;
 
             // Títulos para datas e Nº de Pessoas
@@ -372,27 +447,13 @@ namespace TP_POO_25620_25998
             Console.Write("Digite o ID do quarto: ");
             quartoID = int.Parse(Console.ReadLine());
 
-            int quartoTemp = quartoID;
-
-            var quartoEscolhido = Quartos.QUARTO.FirstOrDefault(q => q.ID == quartoTemp);
-
-            valorQuarto = quartoEscolhido.Valor;
-
-            // Lógica para calcular o preço total da reserva
-            int numDias = (int)(dataFim - dataInicio).TotalDays;
-            decimal preco = valorQuarto * numDias;
-            Console.WriteLine();
-            Console.WriteLine($"Preço total da reserva: {preco}");
-            Console.WriteLine();
-            precoTotal = preco;
-
             return true;
         }
 
-        public bool InserirReservaA(out DateTime dataInicio, out DateTime dataFim, out int numPessoas, out int clienteNIF, out int quartoID, out decimal precoTotal)
+        public bool InserirReservaA(out DateTime dataInicio, out DateTime dataFim, out int numPessoas, out int clienteNIF, out int quartoID, out decimal PrecoTotal)
         {
-            decimal valorQuarto = 0;
             bool QuartoDisp = false;
+            PrecoTotal = 0;
 
             // Títulos para CLIENTES
             Console.Clear();
@@ -462,27 +523,12 @@ namespace TP_POO_25620_25998
                 Console.WriteLine("Não há quartos disponíveis para o alojamento selecionado.");
                 Console.WriteLine();
                 quartoID = 0;
-                precoTotal = 0;
                 return false;
             }
 
             Console.WriteLine();
             Console.Write("Digite o ID do quarto: ");
             quartoID = int.Parse(Console.ReadLine());
-
-            int quartoTemp = quartoID;
-
-            var quartoEscolhido = Quartos.QUARTO.FirstOrDefault(q => q.ID == quartoTemp);
-
-            valorQuarto = quartoEscolhido.Valor;
-
-            // Lógica para calcular o preço total da reserva
-            int numDias = (int)(dataFim - dataInicio).TotalDays;
-            decimal preco = valorQuarto * numDias;
-            Console.WriteLine();
-            Console.WriteLine($"Preço total da reserva: {preco}");
-            Console.WriteLine();
-            precoTotal = preco;
 
             return true;
         }
@@ -520,7 +566,7 @@ namespace TP_POO_25620_25998
 
             foreach (var reserva in Reservas.RESERVA)
             {
-                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20} {4,-20} {5,-20}", reserva.ID, reserva.Cliente.NIF, reserva.DataInicio.ToShortDateString(), 
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20} {4,-20} {5,-20}", reserva.ID, reserva.Cliente.NIF, reserva.DataInicio.ToShortDateString(),
                     reserva.DataFim.ToShortDateString(), reserva.Quarto.ID, reserva.PrecoTotal);
             }
 
@@ -529,6 +575,34 @@ namespace TP_POO_25620_25998
             id = int.Parse(Console.ReadLine());
             Console.WriteLine();
         }
+        
+        public bool ListarReservaC()
+        {
+            Reservas reservas = new Reservas(); // Crie uma instância de Reservas.
+            reservas.OrdenarReserva(); // Chama o método de ordenação antes de listar as reservas.
+
+            foreach (var reserva in Reservas.RESERVA.Where(r => r.Cliente.NIF == NIFClienteLogin))
+            {
+                Console.WriteLine("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Quarto: {5}\nPreço Total: {6}\n",
+                                 reserva.ID, reserva.DataInicio.ToShortDateString(), reserva.DataFim.ToShortDateString(), reserva.NumPessoas, reserva.Cliente.NIF,
+                                 reserva.Quarto.ID, reserva.PrecoTotal);
+            }
+            return true;
+        }
+
+        public bool ListarReservaA()
+        {
+            Reservas reservas = new Reservas(); // Crie uma instância de Reservas.
+            reservas.OrdenarReserva(); // Chama o método de ordenação antes de listar as reservas.
+
+            foreach (var reserva in Reservas.RESERVA)
+            {
+                Console.WriteLine("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Quarto: {5}\nPreço Total: {6}\n",
+                                 reserva.ID, reserva.DataInicio.ToShortDateString(), reserva.DataFim.ToShortDateString(), reserva.NumPessoas, reserva.Cliente.NIF,
+                                 reserva.Quarto.ID, reserva.PrecoTotal);
+            }
+            return true;
+        }
 
         #endregion
 
@@ -536,7 +610,7 @@ namespace TP_POO_25620_25998
 
         public void InserirCheck_I(out int reservaID, out DateTime dataCheck_I)
         {
-            reservaID = 0;            
+            reservaID = 0;
             dataCheck_I = DateTime.MinValue;
 
             // Títulos para RESERVAS
@@ -548,8 +622,12 @@ namespace TP_POO_25620_25998
 
             foreach (var reserva in Reservas.RESERVA)
             {
-                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", reserva.ID, reserva.Cliente.NIF, reserva.DataInicio.ToShortDateString(), 
-                    reserva.DataFim.ToShortDateString());
+                // Verifica se a reserva não tem check-ins associados
+                if (!Check_Ins.CHECKIN.Any(ci => ci.Reserva.ID == reserva.ID))
+                {
+                    Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", reserva.ID, reserva.Cliente.NIF, reserva.DataInicio.ToShortDateString(),
+                        reserva.DataFim.ToShortDateString());
+                }
             }
 
             Console.WriteLine();
@@ -559,6 +637,79 @@ namespace TP_POO_25620_25998
             Console.WriteLine();
             Console.WriteLine("Insira a data de Check IN do cliente");
             dataCheck_I = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine();
+        }
+
+        public void RemoverCheck_I(out int id)
+        {
+            id = 0;
+
+            Console.WriteLine("Insira o ID do Check IN que deseja remover");
+            Console.WriteLine();
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "ID do Check IN", "ID da Reserva", "Data do Check IN");
+
+            foreach (var check_in in Check_Ins.CHECKIN)
+            {
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", check_in.ID, check_in.Reserva.ID, check_in.DataCheckIO.ToShortDateString());
+            }
+
+            Console.WriteLine();
+            Console.Write("Digite o ID do Check IN: ");
+            id = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+        }
+
+        #endregion
+
+        #region CHECK_OUTS
+
+        public void InserirCheck_O(out int checkIN, out DateTime dataCheck_O)
+        {
+            checkIN = 0;
+            dataCheck_O = DateTime.MinValue;
+
+            // Títulos para CHECK_INS
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("CHECK-INS");
+            Console.WriteLine();
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "ID do Check-IN", "ID da Reserva", "Data do Check-IN");
+
+            foreach (var check_i in Check_Ins.CHECKIN)
+            {
+                // Verifica se a reserva não tem check-ins associados
+                if (!Check_Outs.CHECKOUT.Any(co => co.Check_In.ID == check_i.ID))
+                {
+                    Console.WriteLine("{0,-20} {1,-20} {2,-20}", check_i.ID, check_i.Reserva.ID, check_i.DataCheckIO.ToShortDateString());
+                    }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Insira o ID do check-IN");
+            checkIN = int.Parse(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.WriteLine("Insira a data de Check OUT do cliente");
+            dataCheck_O = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine();
+        }
+
+        public void RemoverCheck_O(out int id)
+        {
+            id = 0;
+
+            Console.WriteLine("Insira o ID do Check OUT que deseja remover");
+            Console.WriteLine();
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "ID do Check OUT", "ID do Check IN", "Data do Check OUT");
+
+            foreach (var check_out in Check_Outs.CHECKOUT)
+            {
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", check_out.ID, check_out.Check_In.ID, check_out.DataCheckIO.ToShortDateString());
+            }
+
+            Console.WriteLine();
+            Console.Write("Digite o ID do Check OUT: ");
+            id = int.Parse(Console.ReadLine());
             Console.WriteLine();
         }
 

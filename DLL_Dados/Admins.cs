@@ -18,10 +18,20 @@ namespace DLL_Dados
     public class Admins : IAdmin
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém os administradores.
+        /// </summary>
+
         static List<Admin> admins;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista de administradores.
+        /// </summary>
+
         static Admins()
         {
             admins = new List<Admin>();
@@ -29,6 +39,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista de administradores.
+        /// </summary>
+
         public static List<Admin> ADMIN
         {
             get { return admins; }
@@ -38,6 +53,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Lê os dados de um ficheiro e preenche a lista de administradores com esses dados.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura foi bem-sucedida, falso caso contrário. </returns>
 
         public bool LerAdmin(string a)
         {
@@ -59,7 +79,7 @@ namespace DLL_Dados
                     string password = (sdados[3]);
                     int contacto = int.Parse((sdados[4]));
                     DateTime datanasc = DateTime.Parse(sdados[5]);
-                 
+
                     Admin admin = new Admin(id, nome, email, password, contacto, datanasc);
 
                     admins.Add(admin);
@@ -69,6 +89,12 @@ namespace DLL_Dados
             }
             return true;
         }
+
+        /// <summary>
+        /// Verifica se existe um administrador com o ID fornecido na lista de administradores.
+        /// </summary>
+        /// <param name="ID"> ID do administrador a ser verificado. </param>
+        /// <returns> Verdadeiro se um administrador com o ID fornecido existir, falso caso contrário. </returns>
 
         public bool ExisteAdmin(int ID)
         {
@@ -81,6 +107,13 @@ namespace DLL_Dados
             }
             return false;
         }
+
+        /// <summary>
+        /// Autentica um administrador com base no ID e na password fornecidos.
+        /// </summary>
+        /// <param name="ID"> ID do administrador a ser autenticado. </param>
+        /// <param name="Password"> Password do administrador a ser verificada. </param>
+        /// <returns> Verdadeiro se a autenticação for bem-sucedida, falso caso contrário. </returns>
 
         public bool AuthAdmin(int ID, string Password)
         {

@@ -17,27 +17,35 @@ namespace DLL_Objetos
         #region ESTADO
         // Define campos privados para armazenar o estado do objeto Check-Out.
 
+        // Referência à instância de Check_In associada ao Check-Out.
+        private CheckIn checkin;
+
         #endregion
 
         #region COMPORTAMENTO
 
         #region CONSTRUTORES
         // Construtor padrão inicializa os campos com valores padrão.
-        public CheckOut() : base()
+        public CheckOut() : base() 
         {
-
+            checkin = null;
         }
         // Construtor parametrizado inicializa o CheckOut com valores específicos.
-        public CheckOut(int idCheckOut, Reserva reserva, DateTime dataCheckOut)
+        public CheckOut(int idCheckOut, CheckIn checkin, DateTime dataCheckOut)
         {
             ID = idCheckOut;
-            Reserva = reserva;
             DataCheckIO = dataCheckOut;
+            this.checkin = checkin;
         }
         #endregion
 
         #region PROPRIEDADES
         // Propriedades para acessar os campos privados.
+        public CheckIn Check_In
+        {
+            get { return checkin; }
+            set { checkin = value; }
+        }
 
         #endregion
 
@@ -62,8 +70,8 @@ namespace DLL_Objetos
         // Sobrecarga do método ToString para obter uma representação de string do objeto CheckOut.
         public override string ToString()
         {
-            return string.Format("ID Check-Out: {0}\nID Reserva: {1}\nNome Cliente: {2}\nData Check-Out: {3}\n",
-                                 ID, Reserva.ID, Reserva.Cliente.Nome, DataCheckIO.ToShortDateString());
+            return string.Format("ID Check-Out: {0}\nID Check_IN: {1}\nData Check-Out: {2}\n",
+                                 ID, checkin.ID, DataCheckIO.ToShortDateString());
         }
 
         // Sobrecarga do método Equals para comparar objetos CheckOut.

@@ -1,5 +1,6 @@
 ﻿using DLL_Regras;
 using System;
+using DLL_Exceptions;
 
 public class MenuCliente
 {
@@ -33,7 +34,15 @@ public class MenuCliente
             case 1:
                 Console.WriteLine("===== Fazer Reserva =====");
                 Console.WriteLine();
-                regras.InserirReservaC();
+                try
+                {
+                    regras.InserirReservaC();
+                }
+
+                catch (EReserva r)
+                {
+                    Console.WriteLine("Erro" + "-" + r.Message);
+                }
                 break;
             case 2:
                 Console.WriteLine("===== Cancelar Reserva =====");
@@ -43,7 +52,7 @@ public class MenuCliente
             case 3:
                 Console.WriteLine("===== Listar Reservas =====");
                 Console.WriteLine();
-                regras.ListarReserva();
+                regras.ListarReservaC();
                 break;
             case 4:
                 Console.WriteLine("===== Alterar Dados =====");

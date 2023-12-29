@@ -91,8 +91,8 @@ namespace DLL_Objetos
         // Sobrecarga do método ToString para obter uma representação de string do objeto CheckIO.
         public override string ToString()
         {
-            return string.Format("ID Check-IO: {0}\nID Reserva: {1}\nNome Cliente: {2}\nData Check-IO: {3}\n",
-                                 idCheckIO, reserva.ID, reserva.Cliente.Nome, dataCheckIO.ToShortDateString());
+            return string.Format("ID Check-IO: {0}\nID Reserva: {1}\nData Check-IO: {2}\n",
+                                 idCheckIO, reserva.ID, dataCheckIO.ToShortDateString());
         }
 
         // Sobrecarga do método Equals para comparar objetos CheckIO.
@@ -100,7 +100,7 @@ namespace DLL_Objetos
         {
             if (obj is CheckIO)
             {
-                CheckIO ck = (CheckIO)obj;
+                CheckIO ck = (CheckIO)obj; 
                 return this == ck;
             }
             return false;

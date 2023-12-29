@@ -18,10 +18,20 @@ namespace DLL_Dados
     public class Funcionarios : IFuncionario
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém os funcionários.
+        /// </summary>
+
         static List<Funcionario> funcionarios;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista dos funcionários.
+        /// </summary>
+
         static Funcionarios()
         {
             funcionarios = new List<Funcionario>();
@@ -29,6 +39,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista dos funcionários.
+        /// </summary>
+
         public static List<Funcionario> FUNCIONARIO
         {
             get { return funcionarios; }
@@ -38,6 +53,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Grava os detalhes dos funcionários num ficheiro.
+        /// </summary>
+        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
 
         public bool GravarFunc(string f)
         {
@@ -58,6 +78,11 @@ namespace DLL_Dados
                 return false;
             }
         }
+
+        /// <summary>
+        /// Lê os detalhes dos funcionários a partir de um ficheiro e preenche a lista de funcionários com esses detalhes.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
 
         public bool LerFunc(string f)
         {
@@ -94,17 +119,32 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Insere um novo funcionário na lista de funcionários.
+        /// </summary>
+        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
+
         public bool InserirFunc(Funcionario f)
         {
             funcionarios.Add(f);
             return true;
         }
 
+        /// <summary>
+        /// Remove um funcionário da lista de funcionários.
+        /// </summary>
+        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
+
         public bool RemoverFunc(Funcionario f)
         {
             funcionarios.Remove(f);
             return true;
         }
+
+        /// <summary>
+        /// Lista os detalhes do(s) funcionário(s) na consola.
+        /// </summary>
+        /// <returns>Verdadeiro se a listagem for bem-sucedida.</returns>
 
         public bool ListarFunc()
         {
@@ -117,6 +157,12 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Verifica se existe um funcionário com o ID fornecido na lista de funcionários.
+        /// </summary>
+        /// <param name="ID"> ID do funcionário a ser verificado. </param>
+        /// <returns> Verdadeiro se um funcionário com o ID fornecido existir, falso caso contrário. </returns>
+
         public bool ExisteFunc(int ID)
         {
             foreach (Funcionario funcionario in funcionarios)
@@ -128,6 +174,13 @@ namespace DLL_Dados
             }
             return false;
         }
+
+        /// <summary>
+        /// Autentica um funcionário comparando o ID e a Password fornecidos.
+        /// </summary>
+        /// <param name="ID"> ID do funcionário. </param>
+        /// <param name="Password"> Password do funcionário. </param>
+        /// <returns> Verdadeiro se a autenticação for bem-sucedida, falso caso contrário. </returns>
 
         public bool AuthFunc(int ID, string Password)
         {

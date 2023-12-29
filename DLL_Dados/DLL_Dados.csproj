@@ -34,6 +34,9 @@
     <Reference Include="DLL_Objetos">
       <HintPath>..\DLL_Objetos\bin\Debug\DLL_Objetos.dll</HintPath>
     </Reference>
+    <Reference Include="Exceptions">
+      <HintPath>..\Exceptions\bin\Debug\Exceptions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

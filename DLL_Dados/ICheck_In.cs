@@ -13,11 +13,19 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para os check-ins.
+    /// </summary>
+
     internal interface ICheck_In
     {
         bool GravarCheck_I(string ci);
         bool LerCheck_I(string ci);
         bool InserirCheck_I(CheckIn ci);
+        bool RemoverCheck_I(CheckIn ci);
+        bool ExisteCheck_I(int ID);
+        int ID(int id);
 
     }
 }

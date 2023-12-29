@@ -13,8 +13,19 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para os check-outs.
+    /// </summary>
+
     internal interface ICheck_Out
     {
-
+        bool GravarCheck_O(string co);
+        bool LerCheck_O(string co);
+        bool InserirCheck_O(CheckOut co);
+        bool RemoverCheck_O(CheckOut co);
+        bool ListarCheck_O();
+        bool ExisteCheck_O(int ID);
+        int ID(int id);
     }
 }

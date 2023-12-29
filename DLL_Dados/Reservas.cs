@@ -11,18 +11,28 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 using DLL_Objetos;
+using DLL_Exceptions;
 
 namespace DLL_Dados
 {
     public class Reservas : IReserva
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém as reservas.
+        /// </summary>
+
         static List<Reserva> reservas;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista das reservas.
+        /// </summary>
+
         static Reservas()
         {
             reservas = new List<Reserva>();
@@ -30,6 +40,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista das reservas.
+        /// </summary>
+
         public static List<Reserva> RESERVA
         {
             get { return reservas; }
@@ -39,6 +54,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Grava os detalhes das reservas em um arquivo.
+        /// </summary>
+        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
 
         public bool GravarReserva(string r)
         {
@@ -61,6 +81,11 @@ namespace DLL_Dados
             }
         }
 
+        /// <summary>
+        /// Lê os detalhes das reservas de um arquivo e preenche a lista de reservas com esses detalhes.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
+
         public bool LerReserva(string r)
         {
             if (!File.Exists(r))
@@ -79,7 +104,7 @@ namespace DLL_Dados
                     DateTime datainicio = DateTime.Parse(sdados[1]);
                     DateTime datafim = DateTime.Parse(sdados[2]);
                     int numpessoas = int.Parse(sdados[3]);
-                    int clientenif = int.Parse(sdados[4]);             
+                    int clientenif = int.Parse(sdados[4]);
                     int quartoID = int.Parse(sdados[5]);
                     decimal precototal = decimal.Parse(sdados[6]);
 
@@ -96,11 +121,25 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Insere uma nova reserva na lista de reservas.
+        /// </summary>
+        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
+
         public bool InserirReserva(Reserva r)
         {
+            if (ExisteReserva(r.ID))
+            {
+                throw new EReserva();
+            }
             reservas.Add(r);
             return true;
         }
+
+        /// <summary>
+        /// Remove uma reserva da lista de reservas.
+        /// </summary>
+        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
 
         public bool RemoverReserva(Reserva r)
         {
@@ -108,16 +147,11 @@ namespace DLL_Dados
             return true;
         }
 
-        public bool ListarReserva()
-        {
-            foreach (Reserva reserva in RESERVA)
-            {
-                Console.WriteLine("ID Reserva: {0}\nData Início: {1}\nData Fim: {2}\nNº Pessoas: {3}\nNIF Cliente: {4}\nID Quarto: {5}\nPreço Total: {6}\n",
-                                 reserva.ID, reserva.DataInicio.ToShortDateString(), reserva.DataFim.ToShortDateString(), reserva.NumPessoas, reserva.Cliente.NIF, 
-                                 reserva.Quarto.ID, reserva.PrecoTotal);
-            }
-            return true;
-        }
+        /// <summary>
+        /// Verifica se existe uma reserva com o ID fornecido na lista de reservas.
+        /// </summary>
+        /// <param name="ID"> ID da reserva a ser verificada. </param>
+        /// <returns> Verdadeiro se uma reserva com o ID fornecido existir, falso caso contrário. </returns>
 
         public bool ExisteReserva(int ID)
         {
@@ -129,6 +163,31 @@ namespace DLL_Dados
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Retorna um novo ID para uma reserva com base na contagem atual de reservas.
+        /// </summary>
+        /// <param name="id"> ID atual da reserva. </param>
+        /// <returns> Novo ID baseado na contagem atual de reservas. </returns>
+
+        public int ID(int id)
+        {
+            for (int i = 0; i < reservas.Count; i++)
+            {
+                id = reservas[i].ID;
+            }
+            id++;
+            return id;
+        }
+
+        /// <summary>
+        /// Ordena a lista de reservas.
+        /// </summary>
+
+        public void OrdenarReserva()
+        {
+            reservas.Sort();
         }
 
         #endregion

@@ -12,7 +12,7 @@ using System;
 
 namespace DLL_Objetos
 { 
-    public class Reserva
+    public class Reserva : IComparable<Reserva>
     {
         #region ESTADO
         // Define campos privados para armazenar o estado do objeto Reserva.
@@ -145,6 +145,11 @@ namespace DLL_Objetos
                 return this == r;
             }
             return false;
+        }
+
+        public int CompareTo(Reserva r)
+        {
+            return dataInicio.CompareTo(r.DataInicio);
         }
 
         #endregion

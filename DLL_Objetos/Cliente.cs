@@ -83,7 +83,7 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Cliente.
         public override string ToString()
         {
-            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}",
+            return string.Format("Nome: {0}\nMorada: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nNIF: {6}\n",
                                  Nome, morada, Email, Password, Contacto, DataNascimento.ToShortDateString(), nif);
         }
 

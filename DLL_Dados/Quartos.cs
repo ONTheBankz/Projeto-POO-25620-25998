@@ -18,10 +18,20 @@ namespace DLL_Dados
     public class Quartos : IQuarto
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém os quartos.
+        /// </summary>
+
         static List<Quarto> quartos;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista dos quartos.
+        /// </summary>
+
         static Quartos()
         {
             quartos = new List<Quarto>();
@@ -29,6 +39,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista das propriedades.
+        /// </summary>
+
         public static List<Quarto> QUARTO
         {
             get { return quartos; }
@@ -38,6 +53,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Grava os detalhes dos quartos num ficheiro.
+        /// </summary>
+        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
 
         public bool GravarQuarto(string q)
         {
@@ -58,6 +78,11 @@ namespace DLL_Dados
                 return false;
             }
         }
+
+        /// <summary>
+        /// Lê os detalhes dos quartos a partir de um ficheiro e preenche a lista de quartos com esses detalhes.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
 
         public bool LerQuarto(string q)
         {
@@ -91,17 +116,32 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Insere um novo quarto na lista de quartos.
+        /// </summary>
+        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
+
         public bool InserirQuarto(Quarto q)
         {
             quartos.Add(q);
             return true;
         }
 
+        /// <summary>
+        /// Remove um quarto da lista de quartos.
+        /// </summary>
+        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
+
         public bool RemoverQuarto(Quarto q)
         {
             quartos.Remove(q);
             return true;
         }
+
+        /// <summary>
+        /// Lista os detalhes de todos os quartos na consola.
+        /// </summary>
+        /// <returns> Verdadeiro se a listagem for bem-sucedida. </returns>
 
         public bool ListarQuartos()
         {
@@ -112,6 +152,12 @@ namespace DLL_Dados
             }
             return true;
         }
+
+        /// <summary>
+        /// Verifica se existe um quarto com o ID fornecido na lista de quartos.
+        /// </summary>
+        /// <param name="ID"> ID do quarto a ser verificado. </param>
+        /// <returns> Verdadeiro se um quarto com o ID fornecido existir, falso caso contrário. </returns>
 
         public bool ExisteQuarto(int ID)
         {
@@ -124,6 +170,12 @@ namespace DLL_Dados
             }
             return false;
         }
+
+        /// <summary>
+        /// Obtém a quantidade de pessoas permitidas num tipo de quarto.
+        /// </summary>
+        /// <param name="tipoQuarto"> Tipo de quarto para obter a quantidade de pessoas permitidas. </param>
+        /// <returns> Número de pessoas permitidas no quarto, 0 se o tipo não for reconhecido. </returns>
 
         public int ObterQuant(string tipoQuarto)
         {

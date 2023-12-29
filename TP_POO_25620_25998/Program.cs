@@ -19,6 +19,7 @@ namespace TP_POO_25620_25998
             regras.LerQuarto("quartos");
             regras.LerReserva("reservas");
             regras.LerCheck_I("check_ins");
+            regras.LerCheck_O("check_outs");
             IO io = new IO();
 
             MenuPrincipal m = new MenuPrincipal();
@@ -30,6 +31,7 @@ namespace TP_POO_25620_25998
             regras.GravarQuarto(@"quartos");
             regras.GravarReserva(@"reservas");
             regras.GravarCheck_I(@"check_ins");
+            regras.GravarCheck_O(@"check_outs");
       
         }
     }

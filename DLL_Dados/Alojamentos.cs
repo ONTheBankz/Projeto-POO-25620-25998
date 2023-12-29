@@ -19,10 +19,20 @@ namespace DLL_Dados
     public class Alojamentos : IAlojamento
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém os alojamentos.
+        /// </summary>
+
         static List<Alojamento> alojamentos;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista de alojamentos.
+        /// </summary>
+
         static Alojamentos()
         {
             alojamentos = new List<Alojamento>();
@@ -30,6 +40,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista de alojamentos.
+        /// </summary>
+
         public static List<Alojamento> ALOJAMENTO
         {
             get { return alojamentos; }
@@ -39,6 +54,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Grava os detalhes dos alojamentos num ficheiro.
+        /// </summary>
+        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
 
         public bool GravarAlojamento(string al)
         {
@@ -59,6 +79,11 @@ namespace DLL_Dados
                 return false;
             }
         }
+
+        /// <summary>
+        /// Lê os detalhes dos alojamentos a partir de um ficheiro e preenche a lista de alojamentos com esses detalhes.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
 
         public bool LerAlojamento(string al)
         {
@@ -89,11 +114,21 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Insere um alojamento na lista de alojamentos.
+        /// </summary>
+        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
+
         public bool InserirAlojamento(Alojamento al)
         {
             alojamentos.Add(al);
             return true;
         }
+
+        /// <summary>
+        /// Remove um alojamento da lista de alojamentos.
+        /// </summary>
+        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
 
         public bool RemoverAlojamento(Alojamento al)
         {
@@ -101,14 +136,25 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Lista os detalhes de do(s) alojamento(s) na consola.
+        /// </summary>
+        /// <returns> Verdadeiro se a listagem for bem-sucedida. </returns>
+
         public bool ListarAlojamentos()
-        {          
+        {
             foreach (Alojamento alojamento in ALOJAMENTO)
             {
                 Console.WriteLine("ID: {0}\nNome: {1}\nTipo: {2}\nLocalização: {3}\n", alojamento.ID, alojamento.Nome, alojamento.Tipo, alojamento.Localizacao);
             }
             return true;
         }
+
+        /// <summary>
+        /// Verifica se existe, na lista de alojamentos, um alojamento com o ID fornecido.
+        /// </summary>
+        /// <param name="ID"> ID do alojamento a ser verificado. </param>
+        /// <returns> Verdadeiro se um alojamento com o ID fornecido existir, falso caso contrário. </returns>
 
         public bool ExisteAlojamento(int ID)
         {

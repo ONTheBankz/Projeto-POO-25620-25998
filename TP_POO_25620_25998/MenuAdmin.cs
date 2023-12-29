@@ -1,4 +1,5 @@
-﻿using DLL_Regras;
+﻿using DLL_Exceptions;
+using DLL_Regras;
 using System;
 
 public class MenuAdmin
@@ -36,8 +37,9 @@ public class MenuAdmin
                 Console.WriteLine("===== Gestão de Clientes =====");
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Cliente");
-                Console.WriteLine("2. Listar Clientes");
-                Console.WriteLine("3. Remover Clientes");
+                Console.WriteLine("2. Remover Clientes");
+                Console.WriteLine("3. Listar Clientes");
+                Console.WriteLine("4. Alterar Dados");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -54,14 +56,19 @@ public class MenuAdmin
                         regras.InserirCliente();
                         break;
                     case 2:
+                        Console.WriteLine("===== Remover Clientes =====");
+                        Console.WriteLine();
+                        regras.RemoverCliente();
+                        break;
+                    case 3:
                         Console.WriteLine("===== Listar Clientes =====");
                         Console.WriteLine();
                         regras.ListarClientes();
                         break;
-                    case 3:
-                        Console.WriteLine("===== Remover Clientes =====");
+                    case 4:
+                        Console.WriteLine("===== Alterar Dados Cliente =====");
                         Console.WriteLine();
-                        regras.RemoverCliente();
+                        regras.EditarCliente();
                         break;
                     case 0:
 
@@ -76,8 +83,8 @@ public class MenuAdmin
                 Console.WriteLine("===== Gestão de Funcionários =====");
                 Console.WriteLine();
                 Console.WriteLine("1. Inserir Funcionário");
-                Console.WriteLine("2. Listar Funcionários");
-                Console.WriteLine("3. Remover Funcionários");
+                Console.WriteLine("2. Remover Funcionários");
+                Console.WriteLine("3. Listar Funcionários");
                 Console.WriteLine("0. Voltar");
                 Console.WriteLine();
                 Console.Write("Opção: ");
@@ -94,15 +101,16 @@ public class MenuAdmin
                         regras.InserirFunc();
                         break;
                     case 2:
-                        Console.WriteLine("===== Listar Funcionários =====");
-                        Console.WriteLine();
-                        regras.ListarFunc();
-                        break;
-                    case 3:
                         Console.WriteLine("===== Remover Funcionários =====");
                         Console.WriteLine();
                         regras.RemoverFunc();
                         break;
+                    case 3:
+                        Console.WriteLine("===== Listar Funcionários =====");
+                        Console.WriteLine();
+                        regras.ListarFunc();
+                        break;
+                    
                     case 0:
 
                         break;
@@ -144,7 +152,6 @@ public class MenuAdmin
                         regras.RemoverAlojamento();
                         break;
                     case 0:
-
                         break;
                     default:
                         Console.WriteLine("Opção inválida. Tente novamente.");
@@ -214,7 +221,15 @@ public class MenuAdmin
                     case 1:
                         Console.WriteLine("===== Fazer Reserva =====");
                         Console.WriteLine();
-                        regras.InserirReservaA();
+                        try
+                        {
+                            regras.InserirReservaA();
+                        }
+
+                        catch (EReserva r)
+                        {
+                            Console.WriteLine("Erro" + "-" + r.Message);
+                        }
                         break;
                     case 2:
                         Console.WriteLine("===== Cancelar Reserva =====");
@@ -224,7 +239,7 @@ public class MenuAdmin
                     case 3:
                         Console.WriteLine("===== Listar Reservas =====");
                         Console.WriteLine();
-                        regras.ListarReserva();
+                        regras.ListarReservaA();
                         break;
                     case 0:
                         Console.WriteLine("A sair do programa!");

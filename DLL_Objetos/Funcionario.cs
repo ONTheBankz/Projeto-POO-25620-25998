@@ -84,7 +84,7 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Funcionario.
         public override string ToString()
         {
-            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nID Alojamento: {6}",
+            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\nID Alojamento: {6}\n",
                                  idFunc, Nome, Email, Password, Contacto, DataNascimento.ToShortDateString(), alojamento.ID);
         }
 

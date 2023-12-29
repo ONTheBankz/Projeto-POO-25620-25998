@@ -13,6 +13,11 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para administradores.
+    /// </summary>
+
     internal interface IAdmin
     {
         bool LerAdmin(string a);

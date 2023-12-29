@@ -87,7 +87,7 @@ namespace DLL_Objetos
         // Sobrescrever o método ToString para obter uma representação de string comum.
         public override string ToString()
         {
-            return string.Format("Nome: {0}\nEmail: {1}\nPassword: {2}\nContacto: {3}\nData Nascimento: {4}", nome, email, password,
+            return string.Format("Nome: {0}\nEmail: {1}\nPassword: {2}\nContacto: {3}\nData Nascimento: {4}\n", nome, email, password,
                                 contacto, dataNascimento.ToShortDateString());
         }
 

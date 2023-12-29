@@ -13,7 +13,12 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
-    internal interface IQuarto  
+
+    /// <summary>
+    /// Interface que define operações para os quartos.
+    /// </summary>
+
+    internal interface IQuarto
     {
         bool GravarQuarto(string q);
         bool LerQuarto(string q);

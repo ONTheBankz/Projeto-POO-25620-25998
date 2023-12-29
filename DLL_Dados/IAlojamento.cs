@@ -13,13 +13,18 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para os Alojamentos.
+    /// </summary>
+
     internal interface IAlojamento
     {
         bool GravarAlojamento(string al);
         bool LerAlojamento(string al);
         bool InserirAlojamento(Alojamento al);
         bool RemoverAlojamento(Alojamento al);
-        bool ListarAlojamentos();     
-        bool ExisteAlojamento(int ID);      
+        bool ListarAlojamentos();
+        bool ExisteAlojamento(int ID);
     }
 }

@@ -12,16 +12,28 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using DLL_Objetos;
+using DLL_Exceptions;
+using System.Linq;
 
 namespace DLL_Dados
 {
     public class Clientes : ICliente
     {
         #region ESTADO
+
+        /// <summary>
+        /// Lista que contém os clientes.
+        /// </summary>
+
         static List<Cliente> clientes;
         #endregion
 
         #region CONSTRUTORES
+
+        /// <summary>
+        /// Construtor que inicializa a lista dos clientes.
+        /// </summary>
+
         static Clientes()
         {
             clientes = new List<Cliente>();
@@ -29,6 +41,11 @@ namespace DLL_Dados
         #endregion
 
         #region PROPRIEDADES
+
+        /// <summary>
+        /// Propriedade que acede à lista dos clientes.
+        /// </summary>
+
         public static List<Cliente> CLIENTE
         {
             get { return clientes; }
@@ -38,6 +55,11 @@ namespace DLL_Dados
         #endregion
 
         #region OUTROS MÉTODOS
+
+        /// <summary>
+        /// Grava os detalhes dos clientes num ficheiro.
+        /// </summary>
+        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
 
         public bool GravarCliente(string c)
         {
@@ -58,6 +80,11 @@ namespace DLL_Dados
                 return false;
             }
         }
+
+        /// <summary>
+        /// Lê os detalhes dos clientes a partir de um ficheiro e preenche a lista de clientes com esses detalhes.
+        /// </summary>
+        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
 
         public bool LerCliente(string c)
         {
@@ -91,17 +118,32 @@ namespace DLL_Dados
             return true;
         }
 
+        /// <summary>
+        /// Insere um novo cliente na lista de clientes.
+        /// </summary>
+        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
+
         public bool InserirCliente(Cliente c)
         {
             clientes.Add(c);
             return true;
         }
 
+        /// <summary>
+        /// Remove um cliente da lista de clientes.
+        /// </summary>
+        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
+
         public bool RemoverCliente(Cliente c)
         {
             clientes.Remove(c);
             return true;
         }
+
+        /// <summary>
+        /// Lista os detalhes do(s) cliente(s) na consola.
+        /// </summary>
+        /// <returns> Verdadeiro se a listagem for bem-sucedida. </returns>
 
         public bool ListarClientes()
         {
@@ -114,6 +156,53 @@ namespace DLL_Dados
             return true;
         }
 
+        public bool EditarCliente(int op, string nome, string morada, string email, string password, int contacto, DateTime datanasc, int nif, int NIFC)
+        {
+            // Verifica se o cliente com NIFC existe
+            if (ExisteCliente(NIFC))
+            {
+                Cliente cliente = clientes.FirstOrDefault(c => c.NIF == NIFC);
+
+                switch (op)
+                {
+                    case 1:
+                        cliente.Nome = nome;
+                        return true;
+                    case 2:
+                        cliente.Morada = morada;
+                        return true;
+                    case 3:
+                        cliente.Email = email;
+                        return true;
+                    case 4:
+                        cliente.Password = password;
+                        return true;
+                    case 5:
+                        cliente.Contacto = contacto;
+                        return true;
+                    case 6:
+                        cliente.DataNascimento = datanasc;
+                        return true;
+                    case 7:
+                        cliente.NIF = nif;
+                        return true;
+                    default:
+                        // Operação não suportada
+                        return false;
+                }
+            }
+                Console.WriteLine();
+                // Cliente com NIF dado pelo user não existe
+                Console.WriteLine("Cliente com NIF não encontrado.");
+                return false;
+            }
+        
+        /// <summary>
+        /// Verifica se existe um cliente com o NIF fornecido na lista de clientes.
+        /// </summary>
+        /// <param name="NIF"> NIF do cliente a ser verificado. </param>
+        /// <returns> Verdadeiro se um cliente com o NIF fornecido existir, falso caso contrário. </returns>
+
         public bool ExisteCliente(int NIF)
         {
             foreach (Cliente cliente in clientes)
@@ -125,6 +214,13 @@ namespace DLL_Dados
             }
             return false;
         }
+
+        /// <summary>
+        /// Autentica um cliente comparando o NIF e a Password fornecidos.
+        /// </summary>
+        /// <param name="NIF"> NIF do cliente. </param>
+        /// <param name="Password"> Password do cliente. </param>
+        /// <returns> Verdadeiro se a autenticação for bem-sucedida, falso caso contrário. </returns>
 
         public bool AuthCliente(int NIF, string Password)
         {

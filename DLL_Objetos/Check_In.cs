@@ -62,7 +62,7 @@ namespace DLL_Objetos
         // Sobrecarga do método ToString para obter uma representação de string do objeto CheckIn.
         public override string ToString()
         {
-            return string.Format("ID Check-In: {0}\nID Reserva: {1}\nData Check-In: {2}",
+            return string.Format("ID Check-In: {0}\nID Reserva: {1}\nData Check-In: {2}\n",
                                  ID, Reserva.ID, DataCheckIO.ToShortDateString());
         }
 

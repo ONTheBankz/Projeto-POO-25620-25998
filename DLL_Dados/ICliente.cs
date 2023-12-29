@@ -13,6 +13,11 @@ using DLL_Objetos;
 
 namespace DLL_Dados
 {
+
+    /// <summary>
+    /// Interface que define operações para os clientes.
+    /// </summary>
+
     internal interface ICliente
     {
         bool GravarCliente(string c);
