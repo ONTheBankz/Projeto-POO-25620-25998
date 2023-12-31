@@ -1,18 +1,19 @@
 ﻿/// <summary>
 /// Classe para descrever um Check-Out
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe CheckOut.
 namespace DLL_Objetos
 {
-    public class CheckOut : CheckIO
+    // Definição da classe CheckOut que herda de CheckIO e implementa IComparable<CheckOut>.
+    public class CheckOut : CheckIO, IComparable<CheckOut>
     {
         #region ESTADO
         // Define campos privados para armazenar o estado do objeto Check-Out.
@@ -26,10 +27,11 @@ namespace DLL_Objetos
 
         #region CONSTRUTORES
         // Construtor padrão inicializa os campos com valores padrão.
-        public CheckOut() : base() 
+        public CheckOut() : base()
         {
             checkin = null;
         }
+
         // Construtor parametrizado inicializa o CheckOut com valores específicos.
         public CheckOut(int idCheckOut, CheckIn checkin, DateTime dataCheckOut)
         {
@@ -61,6 +63,16 @@ namespace DLL_Objetos
         public static bool operator !=(CheckOut co1, CheckOut co2)
         {
             return !(co1 == co2);
+        }
+
+        #endregion
+
+        #region MÉTODOS
+
+        // Método CompareTo para comparar as datas do Check_OUT
+        public int CompareTo(CheckOut co)
+        {
+            return DataCheckIO.CompareTo(co.DataCheckIO);
         }
 
         #endregion

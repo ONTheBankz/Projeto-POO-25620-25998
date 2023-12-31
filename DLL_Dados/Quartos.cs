@@ -57,8 +57,8 @@ namespace DLL_Dados
         /// <summary>
         /// Grava os detalhes dos quartos num ficheiro.
         /// </summary>
-        /// <returns> Verdadeiro se a gravação for bem-sucedida, falso caso contrário. </returns>
-
+        /// <param name="q">Caminho do arquivo para gravar os detalhes dos quartos.</param>
+        /// <returns>Verdadeiro se a gravação for bem-sucedida, falso caso contrário.</returns>
         public bool GravarQuarto(string q)
         {
             try
@@ -67,23 +67,25 @@ namespace DLL_Dados
                 {
                     foreach (var quarto in quartos)
                     {
+                        // Escreve uma linha no arquivo com os detalhes do quarto, separados por '#'
                         writer.WriteLine($"{quarto.ID}#{quarto.Tipo}#{quarto.Disponibilidade}#{quarto.Valor}#{quarto.Alojamento.ID}");
                     }
                 }
-                return true;
+                return true; // Retorna verdadeiro se a gravação for bem-sucedida.
             }
             catch (Exception ex)
             {
+                // Em caso de exceção, imprime uma mensagem de erro no console.
                 Console.WriteLine($"Erro ao gravar quarto: {ex.Message}");
-                return false;
+                return false; // Retorna falso indicando que a gravação falhou.
             }
         }
 
         /// <summary>
         /// Lê os detalhes dos quartos a partir de um ficheiro e preenche a lista de quartos com esses detalhes.
         /// </summary>
-        /// <returns> Verdadeiro se a leitura for bem-sucedida, falso caso contrário. </returns>
-
+        /// <param name="q">Caminho do arquivo para ler os detalhes dos quartos.</param>
+        /// <returns>Verdadeiro se a leitura for bem-sucedida, falso caso contrário.</returns>
         public bool LerQuarto(string q)
         {
             if (!File.Exists(q))
@@ -97,6 +99,7 @@ namespace DLL_Dados
                 string linha = sr.ReadLine();
                 while (linha != null)
                 {
+                    // Divide a linha em partes usando '#' como delimitador
                     string[] sdados = linha.Split('#');
                     int id = int.Parse(sdados[0]);
                     string tipo = (sdados[1]);
@@ -104,45 +107,47 @@ namespace DLL_Dados
                     decimal valor = decimal.Parse(sdados[3]);
                     int alojamentoID = int.Parse(sdados[4]);
 
+                    // Cria uma instância de Alojamento com o ID fornecido
                     Alojamento alojamento = new Alojamento { ID = alojamentoID };
 
+                    // Cria uma instância de Quarto com os detalhes lidos
                     Quarto quarto = new Quarto(id, tipo, disponibilidade, valor, alojamento);
 
+                    // Adiciona o quarto à lista de quartos
                     quartos.Add(quarto);
 
-                    linha = sr.ReadLine();
+                    linha = sr.ReadLine(); // Lê a próxima linha do arquivo
                 }
             }
-            return true;
+            return true; // Retorna verdadeiro se a leitura for bem-sucedida.
         }
 
         /// <summary>
         /// Insere um novo quarto na lista de quartos.
         /// </summary>
-        /// <returns> Verdadeiro se a inserção for bem-sucedida. </returns>
-
+        /// <param name="q">Quarto a ser inserido na lista.</param>
+        /// <returns>Verdadeiro se a inserção for bem-sucedida.</returns>
         public bool InserirQuarto(Quarto q)
         {
-            quartos.Add(q);
-            return true;
+            quartos.Add(q); // Adiciona o quarto à lista de quartos
+            return true;    // Retorna verdadeiro para indicar que a inserção foi bem-sucedida
         }
 
         /// <summary>
         /// Remove um quarto da lista de quartos.
         /// </summary>
-        /// <returns> Verdadeiro se a remoção for bem-sucedida. </returns>
-
+        /// <param name="q">Quarto a ser removido da lista.</param>
+        /// <returns>Verdadeiro se a remoção for bem-sucedida.</returns>
         public bool RemoverQuarto(Quarto q)
         {
-            quartos.Remove(q);
-            return true;
+            quartos.Remove(q); // Remove o quarto da lista de quartos usando o método Remove da classe List<Quarto>
+            return true;       // Retorna verdadeiro para indicar que a remoção foi bem-sucedida
         }
 
         /// <summary>
         /// Lista os detalhes de todos os quartos na consola.
         /// </summary>
-        /// <returns> Verdadeiro se a listagem for bem-sucedida. </returns>
-
+        /// <returns>Verdadeiro se a listagem for bem-sucedida.</returns>
         public bool ListarQuartos()
         {
             foreach (Quarto quarto in QUARTO)
@@ -156,9 +161,8 @@ namespace DLL_Dados
         /// <summary>
         /// Verifica se existe um quarto com o ID fornecido na lista de quartos.
         /// </summary>
-        /// <param name="ID"> ID do quarto a ser verificado. </param>
-        /// <returns> Verdadeiro se um quarto com o ID fornecido existir, falso caso contrário. </returns>
-
+        /// <param name="ID">ID do quarto a ser verificado.</param>
+        /// <returns>Verdadeiro se um quarto com o ID fornecido existir, falso caso contrário.</returns>
         public bool ExisteQuarto(int ID)
         {
             foreach (Quarto quarto in quartos)
@@ -174,9 +178,8 @@ namespace DLL_Dados
         /// <summary>
         /// Obtém a quantidade de pessoas permitidas num tipo de quarto.
         /// </summary>
-        /// <param name="tipoQuarto"> Tipo de quarto para obter a quantidade de pessoas permitidas. </param>
-        /// <returns> Número de pessoas permitidas no quarto, 0 se o tipo não for reconhecido. </returns>
-
+        /// <param name="tipoQuarto">Tipo de quarto para obter a quantidade de pessoas permitidas.</param>
+        /// <returns>Número de pessoas permitidas no quarto, 0 se o tipo não for reconhecido.</returns>
         public int ObterQuant(string tipoQuarto)
         {
             switch (tipoQuarto.ToLower())

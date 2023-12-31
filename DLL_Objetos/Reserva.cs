@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever uma Reserva
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Reserva.
 namespace DLL_Objetos
-{ 
+{
+    // Definição da classe Reserva, que implementa a interface IComparable.
     public class Reserva : IComparable<Reserva>
     {
         #region ESTADO
@@ -57,7 +58,7 @@ namespace DLL_Objetos
         // Construtor parametrizado inicializa a Reserva com valores específicos.
         public Reserva(int idReserva, DateTime dataInicio, DateTime dataFim, int numPessoas, Cliente cliente, Quarto quarto, decimal precoTotal)
         {
-            this.idReserva = idReserva;    
+            this.idReserva = idReserva;
             this.dataInicio = dataInicio;
             this.dataFim = dataFim;
             this.numPessoas = numPessoas;
@@ -128,6 +129,16 @@ namespace DLL_Objetos
 
         #endregion
 
+        #region MÉTODOS
+
+        // Método CompareTo para comparar as datas de início da Reserva
+        public int CompareTo(Reserva r)
+        {
+            return dataInicio.CompareTo(r.DataInicio);
+        }
+
+        #endregion
+
         #region OVERRIDES
         // Sobrecarga do método ToString para obter uma representação de string do objeto Reserva.
         public override string ToString()
@@ -145,11 +156,6 @@ namespace DLL_Objetos
                 return this == r;
             }
             return false;
-        }
-
-        public int CompareTo(Reserva r)
-        {
-            return dataInicio.CompareTo(r.DataInicio);
         }
 
         #endregion

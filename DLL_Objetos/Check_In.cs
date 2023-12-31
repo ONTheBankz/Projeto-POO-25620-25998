@@ -1,22 +1,23 @@
 ﻿/// <summary>
 /// Classe para descrever um Check-In
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
-namespace DLL_Objetos 
+// Namespace que contém a classe CheckIn.
+namespace DLL_Objetos
 {
-    public class CheckIn : CheckIO
+    // Definição da classe CheckIn que herda de CheckIO e implementa IComparable<CheckIn>.
+    public class CheckIn : CheckIO, IComparable<CheckIn>
     {
         #region ESTADO
         // Define campos privados para armazenar o estado do objeto CheckIn.
-
+        // (Neste caso, os campos são herdados da classe base CheckIO e não há campos adicionais nesta classe.)
         #endregion
 
         #region COMPORTAMENTO
@@ -25,8 +26,9 @@ namespace DLL_Objetos
         // Construtor padrão inicializa os campos com valores padrão.
         public CheckIn() : base()
         {
-            
+            // Nenhuma inicialização adicional necessária.
         }
+
         // Construtor parametrizado inicializa o CheckIn com valores específicos.
         public CheckIn(int idCheckIn, Reserva reserva, DateTime dataCheckIn)
         {
@@ -38,7 +40,7 @@ namespace DLL_Objetos
 
         #region PROPRIEDADES
         // Propriedades para acessar os campos privados.
-
+        // (Neste caso, as propriedades são herdadas da classe base CheckIO e não há propriedades adicionais nesta classe.)
         #endregion
 
         #region OPERADORES
@@ -53,6 +55,16 @@ namespace DLL_Objetos
         public static bool operator !=(CheckIn ci1, CheckIn ci2)
         {
             return !(ci1 == ci2);
+        }
+
+        #endregion
+
+        #region MÉTODOS
+
+        // Método CompareTo para comparar as datas do Check_In
+        public int CompareTo(CheckIn ci)
+        {
+            return DataCheckIO.CompareTo(ci.DataCheckIO);
         }
 
         #endregion

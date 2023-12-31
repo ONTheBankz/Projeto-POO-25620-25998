@@ -57,22 +57,31 @@ namespace DLL_Dados
         /// <summary>
         /// Lê os dados de um ficheiro e preenche a lista de administradores com esses dados.
         /// </summary>
-        /// <returns> Verdadeiro se a leitura foi bem-sucedida, falso caso contrário. </returns>
-
+        /// <param name="a">Caminho do ficheiro a ser lido.</param>
+        /// <returns>Verdadeiro se a leitura foi bem-sucedida, falso caso contrário.</returns>
         public bool LerAdmin(string a)
         {
+            // Verifica se o ficheiro especificado existe.
             if (!File.Exists(a))
             {
-                // Se o ficheiro não existir, cria um novo ficheiro vazio
+                // Se o ficheiro não existir, cria um novo ficheiro vazio.
                 using (File.Create(a)) { }
-                return false; // Retorna falso porque não há dados para ler
+                return false; // Retorna falso porque não há dados para ler.
             }
+
+            // Utiliza um bloco 'using' para garantir que o StreamReader é corretamente fechado ao finalizar.
             using (StreamReader sr = File.OpenText(a))
             {
+                // Lê a primeira linha do ficheiro.
                 string linha = sr.ReadLine();
+
+                // Continua a ler enquanto houver linhas no ficheiro.
                 while (linha != null)
                 {
+                    // Divide a linha usando '#' como delimitador para obter os diferentes campos.
                     string[] sdados = linha.Split('#');
+
+                    // Converte os dados para os tipos apropriados.
                     int id = int.Parse(sdados[0]);
                     string nome = (sdados[1]);
                     string email = (sdados[2]);
@@ -80,51 +89,57 @@ namespace DLL_Dados
                     int contacto = int.Parse((sdados[4]));
                     DateTime datanasc = DateTime.Parse(sdados[5]);
 
+                    // Cria um novo objeto Admin com os dados lidos.
                     Admin admin = new Admin(id, nome, email, password, contacto, datanasc);
 
+                    // Adiciona o administrador à lista.
                     admins.Add(admin);
 
+                    // Lê a próxima linha do ficheiro.
                     linha = sr.ReadLine();
                 }
             }
-            return true;
+
+            return true; // Indica que a leitura foi bem-sucedida.
         }
 
         /// <summary>
         /// Verifica se existe um administrador com o ID fornecido na lista de administradores.
         /// </summary>
-        /// <param name="ID"> ID do administrador a ser verificado. </param>
-        /// <returns> Verdadeiro se um administrador com o ID fornecido existir, falso caso contrário. </returns>
-
+        /// <param name="ID">ID do administrador a ser verificado.</param>
+        /// <returns>Verdadeiro se um administrador com o ID fornecido existir, falso caso contrário.</returns>
         public bool ExisteAdmin(int ID)
         {
+            // Percorre todos os administradores na lista.
             foreach (Admin admin in admins)
             {
+                // Verifica se o ID do administrador atual corresponde ao ID fornecido.
                 if (admin.ID == ID)
                 {
-                    return true;
+                    return true; // Retorna verdadeiro se encontrar um administrador com o ID fornecido.
                 }
             }
-            return false;
+            return false; // Retorna falso se nenhum administrador com o ID fornecido for encontrado.
         }
 
         /// <summary>
         /// Autentica um administrador com base no ID e na password fornecidos.
         /// </summary>
-        /// <param name="ID"> ID do administrador a ser autenticado. </param>
-        /// <param name="Password"> Password do administrador a ser verificada. </param>
-        /// <returns> Verdadeiro se a autenticação for bem-sucedida, falso caso contrário. </returns>
-
+        /// <param name="ID">ID do administrador a ser autenticado.</param>
+        /// <param name="Password">Password do administrador a ser verificada.</param>
+        /// <returns>Verdadeiro se a autenticação for bem-sucedida, falso caso contrário.</returns>
         public bool AuthAdmin(int ID, string Password)
         {
+            // Percorre todos os administradores na lista.
             foreach (Admin admin in admins)
             {
+                // Verifica se o ID e a password do administrador atual correspondem aos fornecidos.
                 if (admin.ID == ID && admin.Password == Password)
                 {
-                    return true;
+                    return true; // Retorna verdadeiro se a autenticação for bem-sucedida.
                 }
             }
-            return false; // Alterado de true para false, indicando que a autenticação falhou.
+            return false; // Retorna falso se a autenticação falhar.
         }
 
         #endregion

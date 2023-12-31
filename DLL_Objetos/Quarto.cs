@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever um Quarto
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Quarto.
 namespace DLL_Objetos
 {
+    // Definição da classe Quarto.
     public class Quarto
     {
         #region ESTADO
@@ -93,9 +94,8 @@ namespace DLL_Objetos
         #endregion
 
         #region MÉTODOS
-
         // Outros métodos relacionados à gestão do quarto.
-
+        // Adicione métodos conforme necessário para a gestão do quarto.
         #endregion
 
         #region OPERADORES 

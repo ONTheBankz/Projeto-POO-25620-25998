@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever um Alojamento
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Alojamento.
 namespace DLL_Objetos
 {
+    // Definição da classe Alojamento.
     public class Alojamento
     {
         #region ESTADO 
@@ -42,6 +43,7 @@ namespace DLL_Objetos
             tipoAlojamento = "";
             localizacao = "";
         }
+
         // Construtor parametrizado inicializa o Alojamento com valores específicos.
         public Alojamento(int idAlojamento, string nomeAlojamento, string tipoAlojamento, string localizacao)
         {
@@ -88,6 +90,7 @@ namespace DLL_Objetos
         {
             return al1.idAlojamento == al2.idAlojamento;
         }
+
         // Operador de desigualdade para negar a igualdade entre dois alojamentos.
         public static bool operator !=(Alojamento al1, Alojamento al2)
         {
@@ -100,7 +103,7 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Alojamento.
         public override string ToString()
         {
-            return string.Format("ID: {0}\nNome: {1}\nTipo: {2}\nLocalização: {3}",
+            return string.Format("ID: {0}\nNome: {1}\nTipo: {2}\nLocalização: {3}\n",
                                  idAlojamento, nomeAlojamento, tipoAlojamento, localizacao);
         }
 

@@ -1,22 +1,23 @@
 ﻿/// <summary>
 /// Classe para descrever um Cliente
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Cliente.
 namespace DLL_Objetos
 {
+    // Definição da classe Cliente que herda da classe Pessoa.
     public class Cliente : Pessoa
     {
         #region ESTADO 
         // Define campos privados para armazenar o estado do objeto Cliente.
-       
+
         // Morada do cliente.
         private string morada;
 
@@ -30,14 +31,15 @@ namespace DLL_Objetos
         #region CONSTRUTORES
         // Construtor padrão inicializa os campos com valores padrão.
         public Cliente()
-        {  
-            morada = "";        
+        {
+            morada = "";
             nif = 0;
         }
+
         // Construtor parametrizado inicializa o Cliente com valores específicos.
         public Cliente(string nomeCliente, string morada, string emailCliente, string passCliente, int contactoCliente, DateTime dataNascCliente, int nif)
         {
-            Nome = nomeCliente;        
+            Nome = nomeCliente;
             Email = emailCliente;
             Password = passCliente;
             Contacto = contactoCliente;
@@ -71,6 +73,7 @@ namespace DLL_Objetos
         {
             return c1.NIF == c2.NIF;
         }
+
         // Operador de desigualdade para negar a igualdade entre dois clientes.
         public static bool operator !=(Cliente c1, Cliente c2)
         {

@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever um CheckIO
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe CheckIO.
 namespace DLL_Objetos
 {
+    // Definição da classe CheckIO.
     public class CheckIO
     {
         #region ESTADO
@@ -38,6 +39,7 @@ namespace DLL_Objetos
             reserva = null;
             dataCheckIO = DateTime.MinValue;
         }
+
         // Construtor parametrizado inicializa o CheckIO com valores específicos.
         public CheckIO(int idCheckIO, Reserva reserva, DateTime dataCheckIO)
         {
@@ -100,7 +102,7 @@ namespace DLL_Objetos
         {
             if (obj is CheckIO)
             {
-                CheckIO ck = (CheckIO)obj; 
+                CheckIO ck = (CheckIO)obj;
                 return this == ck;
             }
             return false;

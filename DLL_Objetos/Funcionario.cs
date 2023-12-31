@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever um Funcionario
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Funcionario.
 namespace DLL_Objetos
 {
+    // Definição da classe Funcionario que herda de Pessoa.
     public class Funcionario : Pessoa
     {
         #region ESTADO 
@@ -34,9 +35,9 @@ namespace DLL_Objetos
             idFunc = 0;
             alojamento = null;
         }
+
         // Construtor parametrizado inicializa o Funcionario com valores específicos.
         public Funcionario(int idFunc, string nomeFunc, string emailFunc, string passFunc, int contactoFunc, DateTime dataNascFunc, Alojamento alojamento)
-
         {
             Nome = nomeFunc;
             Email = emailFunc;
@@ -72,6 +73,7 @@ namespace DLL_Objetos
         {
             return f1.idFunc == f2.idFunc;
         }
+
         // Sobrecarga do operador de desigualdade para negar a igualdade entre dois funcionarios.
         public static bool operator !=(Funcionario f1, Funcionario f2)
         {
@@ -93,7 +95,7 @@ namespace DLL_Objetos
         {
             if (obj is Funcionario)
             {
-                Funcionario f= (Funcionario)obj;
+                Funcionario f = (Funcionario)obj;
                 return this == f;
             }
             return false;

@@ -1,17 +1,18 @@
 ﻿/// <summary>
 /// Classe para descrever um Admin
-/// David Martinho
-/// Rafael Rodrigues
-/// a25620@alunos.ipca.pt
-/// a25998@alunos.ipca.pt
-/// 09-11-2023
-/// POO-LESI
+/// Autores: David Martinho, Rafael Rodrigues
+/// Emails: a25620@alunos.ipca.pt, a25998@alunos.ipca.pt
+/// Data: 09-11-2023
+/// Disciplina: POO-LESI
 /// </summary>
 
+// Importa a biblioteca System para utilizar funcionalidades básicas do sistema.
 using System;
 
+// Namespace que contém a classe Admin.
 namespace DLL_Objetos
 {
+    // Definição da classe Admin que herda da classe Pessoa.
     public class Admin : Pessoa
     {
         #region ESTADO 
@@ -30,9 +31,9 @@ namespace DLL_Objetos
         {
             idAdmin = 0;
         }
+
         // Construtor parametrizado inicializa o Admin com valores específicos.
         public Admin(int idAdmin, string nomeAdmin, string emailAdmin, string passAdmin, int contactoAdmin, DateTime dataNascAdmin)
-        
         {
             Nome = nomeAdmin;
             Email = emailAdmin;
@@ -61,6 +62,7 @@ namespace DLL_Objetos
         {
             return a1.ID == a2.ID;
         }
+
         // Operador de desigualdade para negar a igualdade entre dois admins.
         public static bool operator !=(Admin a1, Admin a2)
         {
@@ -73,7 +75,7 @@ namespace DLL_Objetos
         // Método ToString para obter uma representação de string do objeto Admin.
         public override string ToString()
         {
-            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}",
+            return string.Format("ID: {0}\nNome: {1}\nEmail: {2}\nPassword: {3}\nContacto: {4}\nData Nascimento: {5}\n",
                                  idAdmin, Nome, Email, Password, Contacto, DataNascimento.ToShortDateString());
         }
 
